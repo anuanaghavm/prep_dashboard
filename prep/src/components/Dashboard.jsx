@@ -9,10 +9,10 @@ const Dashboard = () => {
   return (
     <div className="d-flex">
       {/* Sidebar Component */}
-      <Sidebar />
+      {/* <Sidebar /> */}
 
       {/* Main Content */}
-      <div className="container-fluid p-0" style={{ marginLeft: "250px" }}>
+      <div className="container-fluid p-0" style={{ marginLeft: "50px" }}>
         {/* Header Section */}
         <div
           className="d-flex align-items-center p-3 text-white"

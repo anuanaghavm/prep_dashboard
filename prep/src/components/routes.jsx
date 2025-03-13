@@ -27,7 +27,11 @@ const routes = [
     {
         path:'/dashboard',
         element:(
+            <Staticlayout>
+
                 <Dashboard/>
+                </Staticlayout>
+
         )
     },
 

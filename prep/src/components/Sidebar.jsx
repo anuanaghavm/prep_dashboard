@@ -1,27 +1,30 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-// ✅ FIX: Corrected import path for the image
-import logoSrc from "/src/assets/Headerlogo.webp"; 
+import logoSrc from "/src/assets/Headerlogo.webp";
 
 const Sidebar = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Sidebar width logic
+  const sidebarWidth = location.pathname === "/home" ? "15%" : "23.5%";
 
   return (
     <div
       className="d-flex flex-column p-3 shadow-sm"
       style={{
-        width: "23.5%",
-        backgroundColor: "#FF6B45", // Sidebar background color
+        width: "100%",
+        backgroundColor: "#FF6B45",
         height: "100vh",
+        transition: "width 0.3s ease-in-out",
       }}
     >
       {/* Sidebar Header with Logo */}
       <div
         className="text-center mb-3"
         style={{
-          backgroundColor: "white", // White background for the logo
+          backgroundColor: "white",
           padding: "10px",
           borderRadius: "5px",
         }}
@@ -32,28 +35,48 @@ const Sidebar = () => {
       {/* Sidebar Navigation */}
       <ul className="nav flex-column">
         <li className="nav-item">
-          <a className="nav-link text-white d-flex align-items-center" onClick={() => navigate("/dashboard")}>
-            <i className="bi bi-house-door me-2"></i> Dashboard
+          <a
+            className="nav-link text-white d-flex align-items-center"
+            style={{ fontSize: "16px", padding: "10px" }}
+            onClick={() => navigate("/dashboard")}
+          >
+            <i className="bi bi-house-door me-3" style={{ fontSize: "18px", width: "20px" }}></i> Dashboard
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link text-white d-flex align-items-center" onClick={() => navigate("/home")}>
-            <i className="bi bi-briefcase me-2"></i> Home
+          <a
+            className="nav-link text-white d-flex align-items-center"
+            style={{ fontSize: "16px", padding: "10px" }}
+            onClick={() => navigate("/home")}
+          >
+            <i className="bi bi-briefcase me-3" style={{ fontSize: "18px", width: "20px" }}></i> Home
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link text-white d-flex align-items-center" onClick={() => navigate("/products")}>
-            <i className="bi bi-box-seam me-2"></i> About us
+          <a
+            className="nav-link text-white d-flex align-items-center"
+            style={{ fontSize: "16px", padding: "10px" }}
+            onClick={() => navigate("/products")}
+          >
+            <i className="bi bi-box-seam me-3" style={{ fontSize: "18px", width: "20px" }}></i> About us
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link text-white d-flex align-items-center" onClick={() => navigate("/develop")}>
-            <i className="bi bi-code-slash me-2"></i> Blogs
+          <a
+            className="nav-link text-white d-flex align-items-center"
+            style={{ fontSize: "16px", padding: "10px" }}
+            onClick={() => navigate("/develop")}
+          >
+            <i className="bi bi-code-slash me-3" style={{ fontSize: "18px", width: "20px" }}></i> Blogs
           </a>
         </li>
         <li className="nav-item">
-          <a className="nav-link text-white d-flex align-items-center" onClick={() => navigate("/admin")}>
-            <i className="bi bi-gear me-2"></i> Admin
+          <a
+            className="nav-link text-white d-flex align-items-center"
+            style={{ fontSize: "16px", padding: "10px" }}
+            onClick={() => navigate("/admin")}
+          >
+            <i className="bi bi-gear me-3" style={{ fontSize: "18px", width: "20px" }}></i> Admin
           </a>
         </li>
       </ul>
