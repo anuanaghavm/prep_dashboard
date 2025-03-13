@@ -18,7 +18,7 @@ const routes = [
     // <Route path='/Sidebar' element={<Sidebar/>}/>
     // {
     {
-        path:'/login',
+        path:'/',
         element:(
                 <Login/>
         )
