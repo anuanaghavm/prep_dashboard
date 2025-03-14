@@ -1,47 +1,126 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
-import Sidebar from "../components/Sidebar"; // ✅ Fixed import
+import { Container, Row, Col, Card, Table, Dropdown } from "react-bootstrap";
+import { Line, Pie } from "react-chartjs-2";
+import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend } from "chart.js";
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend);
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+  const lineData = {
+    labels: ["JAN-MAR", "APR-JUN", "JUL-SEP", "OCT-DEC"],
+    datasets: [
+      {
+        label: "TVL 2022",
+        data: [30, 25, 28, 35],
+        borderColor: "#1f77b4",
+        backgroundColor: "transparent",
+        tension: 0.4,
+      },
+      {
+        label: "TVL 2021",
+        data: [32, 22, 26, 31],
+        borderColor: "#98df8a",
+        backgroundColor: "transparent",
+        tension: 0.4,
+      },
+    ],
+  };
+
+  const pieData = {
+    labels: ["ETHEREUM", "BSC", "TRON"],
+    datasets: [
+      {
+        data: [45, 30, 20],
+        backgroundColor: ["#3366ff", "#33cc33", "#9966ff"],
+      },
+    ],
+  };
 
   return (
-    <div className="d-flex">
-      {/* Sidebar Component */}
-      {/* <Sidebar /> */}
+    <Container fluid style={{ backgroundColor: "#FFDAB9", minHeight: "100vh", padding: "20px" }}>
+      <h3 className="my-3">Welcome back, Esther!</h3>
+      <p>Take a look at the updated DeFi overview</p>
 
-      {/* Main Content */}
-      <div className="container-fluid p-0" style={{ marginLeft: "50px" }}>
-        {/* Header Section */}
-        
+      <Row>
+        <Col md={8}>
+          <Card className="p-3">
+            <h5>TVL 2022</h5>
+            <h2>$43.35B <span className="text-success">+13%</span></h2>
+            <Line data={lineData} />
+          </Card>
+        </Col>
+        <Col md={4}>
+          <Card className="p-3 mb-3 text-white bg-success">
+            <h6>Change (24h)</h6>
+            <h3>-4.31%</h3>
+            <p>-0.07% this month</p>
+          </Card>
+          <Card className="p-3">
+            <h6>Maker Dominance</h6>
+            <h3>15.62%</h3>
+            <p>+1.31% this month</p>
+          </Card>
+        </Col>
+      </Row>
 
-        {/* Main Content Body */}
-        <div className="p-4" style={{ marginTop: "70px" }}>
-          <p>Welcome to My Project. Have a look at any recent changes to your projects.</p>
-
-          {/* Stats Row */}
-          <div className="row">
-            <div className="col-md-6">
-              <div className="card p-3 bg-warning text-dark shadow-sm">
-                <p>Quickly sketch out systems to get a quick estimate for budget to your customer.</p>
-                <button className="btn btn-dark">Start new project</button>
-              </div>
+      <Row className="mt-3">
+        <Col md={4}>
+          <Card className="p-3">
+            <h6>Top Protocols</h6>
+            <Pie data={pieData} />
+          </Card>
+        </Col>
+        <Col md={8}>
+          <Card className="p-3">
+            <div className="d-flex justify-content-between align-items-center">
+              <h6>TVL Rankings</h6>
+              <Dropdown>
+                <Dropdown.Toggle variant="light">Ethereum</Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item>Ethereum</Dropdown.Item>
+                  <Dropdown.Item>BSC</Dropdown.Item>
+                  <Dropdown.Item>TRON</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
-          </div>
-
-          {/* Active Users Section */}
-          <div className="mt-4 p-3 bg-white shadow-sm">
-            <h5>Active Users for the last 1 month</h5>
-            <h2>12,345 users</h2>
-            <p>Avg this week</p>
-            <div className="p-3 bg-light">
-              <p>Chart Placeholder</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Category</th>
+                  <th>Chains</th>
+                  <th>7D Change</th>
+                  <th>TVL</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>MakerDAO</td>
+                  <td>CDP</td>
+                  <td>🔗</td>
+                  <td className="text-success">+3.12%</td>
+                  <td>$6,678</td>
+                </tr>
+                <tr>
+                  <td>Convex</td>
+                  <td>CDP</td>
+                  <td>🔗</td>
+                  <td className="text-danger">-0.07%</td>
+                  <td>$2,278</td>
+                </tr>
+                <tr>
+                  <td>Instadapp</td>
+                  <td>CDP</td>
+                  <td>🔗</td>
+                  <td className="text-success">+0.62%</td>
+                  <td>$1,678</td>
+                </tr>
+              </tbody>
+            </Table>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
   );
 };
 
