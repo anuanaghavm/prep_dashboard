@@ -14,25 +14,7 @@ const Dashboard = () => {
       {/* Main Content */}
       <div className="container-fluid p-0" style={{ marginLeft: "50px" }}>
         {/* Header Section */}
-        <div
-          className="d-flex align-items-center p-3 text-white"
-          style={{
-            position: "fixed",
-            top: 0,
-            left: "250px",
-            right: 0,
-            height: "60px",
-            zIndex: 1000,
-            borderBottom: "2px solid #f1f1f1",
-          }}
-        >
-          <h2 className="mb-0">Dashboard</h2>
-          <div className="w-100 d-flex justify-content-end">
-            <button style={{ backgroundColor: "#FF6B45" }} className="btn shadow btn-light" onClick={() => navigate("/")}>
-              Logout
-            </button>
-          </div>
-        </div>
+        
 
         {/* Main Content Body */}
         <div className="p-4" style={{ marginTop: "70px" }}>

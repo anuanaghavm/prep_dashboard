@@ -1,48 +1,53 @@
-import React from 'react'
-import Staticlayout from './Staticlayout'
-import Home from './home'
-import Login from '../components/login/Login'
+import React from "react";
+import Staticlayout from "./Staticlayout";
+import Home from "./home";
+import Login from "../components/login/Login";
 // import Signup from '../components/'
-import Dashboard from '../components/dashboard'
+import Dashboard from "../components/dashboard";
+// import BlogCategories from './components/blogs/Blogcategor'
+import Blogcategory from "./blogs/Blogcategory";
 // import Dash from './components/dash'
 // import Sidebar from './components/Sidebar'
 // import UserRoute from './components/routesindex'
 
 const routes = [
+  // <Route path='/login' element={<Login/>}/>
+  // <Route path='/signup' element={<Signup/>}/>
+  // <Route path='/Dashboard' element={<Dashboard/>}/>
+  // <Route path='/Home' element={<Home/>}/>
+  // <Route path='/Dash' element={<Dash/>}/>
+  // <Route path='/Sidebar' element={<Sidebar/>}/>
+  // {
+  {
+    path: "/",
+    element: <Login />,
+  },
 
-    // <Route path='/login' element={<Login/>}/>
-    // <Route path='/signup' element={<Signup/>}/>
-    // <Route path='/Dashboard' element={<Dashboard/>}/>
-    // <Route path='/Home' element={<Home/>}/>
-    // <Route path='/Dash' element={<Dash/>}/>
-    // <Route path='/Sidebar' element={<Sidebar/>}/>
-    // {
-    {
-        path:'/',
-        element:(
-                <Login/>
-        )
-    },
+  {
+    path: "/dashboard",
+    element: (
+        <Staticlayout>
+          <Dashboard />
+        </Staticlayout>
+      ),
+  },
 
-    {
-        path:'/dashboard',
-        element:(
-            <Staticlayout>
+  {
+    path: "/home",
+    element: (
+      <Staticlayout>
+        <Home />
+      </Staticlayout>
+    ),
+  },
+  {
+    path: "/blogcategories",
+    element: (
+      <Staticlayout>
+        <Blogcategory />
+      </Staticlayout>
+    ),
+  },
+];
 
-                <Dashboard/>
-                </Staticlayout>
-
-        )
-    },
-
-    {
-        path:'/home',
-        element:(
-            <Staticlayout>
-                <Home/>
-            </Staticlayout> 
-        )
-    }
-]
-
-export default routes
+export default routes;
