@@ -4,24 +4,21 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import logoSrc from "/src/assets/Headerlogo.webp";
 
 const Sidebar = () => {
-  const [isBlog, setIsBlog] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const [isBlogOpen, setIsBlogOpen] = useState(false);
 
-  // Sidebar width logic
-  const sidebarWidth = location.pathname === "/home" ? "15%" : "23.5%";
-
+  // Toggle Blogs submenu
   const handleClick = () => {
-    setIsBlog(!isBlog);
+    setIsBlogOpen(!isBlogOpen);
   };
-  console.log(isBlog);
 
   return (
     <div
       className="d-flex flex-column p-3 shadow-sm"
       style={{
-        width: "100%", // 🔹 Reduce width (Adjust as needed)
-        backgroundColor: "#FF6B45", // Sidebar background color
+        width: "100%",
+        backgroundColor: "#FF6B45",
         height: "100vh",
         transition: "width 0.3s ease-in-out",
       }}
@@ -35,91 +32,64 @@ const Sidebar = () => {
           borderRadius: "5px",
         }}
       >
-        <img
-          src={logoSrc}
-          alt="Company Logo"
-          className="img-fluid"
-          style={{ height: "50px" }}
-        />
+        <img src={logoSrc} alt="Company Logo" className="img-fluid" style={{ height: "50px" }} />
       </div>
 
       {/* Sidebar Navigation */}
       <ul className="nav flex-column">
         <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center"
-            onClick={() => navigate("/dashboard")}
-          >
-            <i className="bi bi-house-door me-2"></i> Dashboard
+          <a className="nav-link text-white d-flex align-items-center gap-2" style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }} onClick={() => navigate("/dashboard")}>
+            <i className="bi bi-house-door" style={{ fontSize: "18px" }}></i> 
+            <span>Dashboard</span>
           </a>
         </li>
         <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center"
-            style={{ fontSize: "16px", padding: "10px" }}
-            onClick={() => navigate("/home")}
-          >
-            <i className="bi bi-briefcase me-3" style={{ fontSize: "18px", width: "20px" }}></i> Home
+          <a className="nav-link text-white d-flex align-items-center gap-2" style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }} onClick={() => navigate("/Home")}>
+            <i className="bi bi-speedometer2" style={{ fontSize: "18px" }}></i> 
+            <span>Home</span>
           </a>
         </li>
         <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center"
-            onClick={() => navigate("/products")}
-          >
-            <i className="bi bi-box-seam me-2"></i> About us
+          <a className="nav-link text-white d-flex align-items-center gap-2" style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }} onClick={() => navigate("/products")}>
+            <i className="bi bi-box-seam" style={{ fontSize: "18px" }}></i> 
+            <span>About us</span>
           </a>
         </li>
+
+        {/* Blogs Dropdown */}
         <li className="nav-item">
-          <li
-            className="d-flex justify-content-between"
-            onClick={handleClick}
-            style={{ cursor: "pointer" }}
-          >
-            <span
-              className="text-light "
-              style={{
-                position: "relative",
-                left: "25px",
-                marginRight: "10px",
-              }}
-            >
-              Blogs{!isBlog ? <span> ▲</span> : <span> ▼</span>}
-            </span>
-          </li>
-          {isBlog && (
-            <>
-              <li
-                className="text-light "
-                onClick={() => navigate("/blogcategories")}
-                style={{
-                  cursor: "pointer",
-                  position: "relative",
-                  left: "40px",
-                }}
-              >
-                <i className="bi bi-box-seam me-2"></i>Blog Categories
+          <div className="d-flex align-items-center justify-content-between text-white" style={{ cursor: "pointer", padding: "10px" }} onClick={handleClick}>
+            <div className="d-flex align-items-center gap-2">
+              <i className="bi bi-newspaper" style={{ fontSize: "18px" }}></i> 
+              <span>Blogs</span>
+            </div>
+            <span>{isBlogOpen ? "▲" : "▼"}</span>
+          </div>
+          {isBlogOpen && (
+            <ul className="list-unstyled ms-3">
+              <li className="text-light d-flex align-items-center gap-2" style={{ cursor: "pointer", padding: "5px 10px" }} onClick={() => navigate("/blogcategories")}>
+                <i className="bi bi-folder"></i> 
+                <span>Blog Categories</span>
               </li>
-              <li
-                className="text-light "
-                onClick={() => navigate("/blog-contents")}
-                style={{
-                  cursor: "pointer",
-                  position: "relative",
-                  left: "40px",
-                }}
-              >
-                <i className="bi bi-box-seam me-2"></i>Blog Cards
+              <li className="text-light d-flex align-items-center gap-2" style={{ cursor: "pointer", padding: "5px 10px" }} onClick={() => navigate("/blog-contents")}>
+                <i className="bi bi-card-list"></i> 
+                <span>Blog Cards</span>
               </li>
-            </>
+            </ul>
           )}
         </li>
+
         <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center"
-            onClick={() => navigate("/admin")}
-          >
-            <i className="bi bi-gear me-2"></i> Admin
+          <a className="nav-link text-white d-flex align-items-center gap-2" style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }} onClick={() => navigate("/all-courses")}>
+            <i className="bi bi-journal-text" style={{ fontSize: "18px" }}></i> 
+            <span>All Courses</span>
+          </a>
+        </li>
+
+        <li className="nav-item">
+          <a className="nav-link text-white d-flex align-items-center gap-2" style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }} onClick={() => navigate("/contact")}>
+            <i className="bi bi-telephone" style={{ fontSize: "18px" }}></i> 
+            <span>Contact</span>
           </a>
         </li>
       </ul>
