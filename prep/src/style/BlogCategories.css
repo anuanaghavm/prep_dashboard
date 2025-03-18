@@ -31,3 +31,28 @@
     display: flex;
     gap: 10px;
 }
+
+.table th, 
+.table td {
+  height: 50px; /* Set a fixed height for all rows */
+  vertical-align: middle; /* Align text vertically */
+  text-align: center; /* Center content */
+  padding: 8px 12px; /* Adjust padding */
+  white-space: nowrap; /* Prevent text from wrapping */
+}
+.btn {
+    height: 30px; /* Adjust button height */
+    line-height: 1;
+    padding: 5px 8px;
+  }
+
+/* .table th:nth-child(1), .table td:nth-child(1) { 
+  width: 50px; 
+} */
+
+/* .table th:nth-child(2), .table td:nth-child(2) { 
+  width: 200px; 
+} */
+
+/* .table th:nth-child(3), .table td:nth-child(3) {
+  width: 100px;  */

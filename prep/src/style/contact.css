@@ -31,3 +31,19 @@
     display: flex;
     gap: 10px;
 }
+
+.custom-modal {
+    width: 100%; /* Adjust width */
+    height: auto; /* Adjust height */
+    
+  }
+  
+  .modal-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .form-label {
+    font-weight: bold;
+  }
+  
