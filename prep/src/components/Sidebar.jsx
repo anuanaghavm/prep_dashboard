@@ -15,14 +15,17 @@ const Sidebar = () => {
 
   return (
     <div
-      className="d-flex flex-column p-3 shadow-sm"
-      style={{
-        width: "100%",
-        backgroundColor: "#FF6B45",
-        height: "100vh",
-        transition: "width 0.3s ease-in-out",
-      }}
-    >
+  className="d-flex flex-column p-3 shadow-sm"
+  style={{
+    width: "250px", // Set fixed width
+    backgroundColor: "#FF6B45",
+    height: "100vh", // Ensure it fills the full height
+    position: "fixed", // Fix it to the left
+    top: 0,
+    left: 0,
+  }}
+>
+
       {/* Sidebar Header with Logo */}
       <div
         className="text-center mb-3"
@@ -71,7 +74,7 @@ const Sidebar = () => {
                 <i className="bi bi-folder"></i> 
                 <span>Blog Categories</span>
               </li>
-              <li className="text-light d-flex align-items-center gap-2" style={{ cursor: "pointer", padding: "5px 10px" }} onClick={() => navigate("/blog-contents")}>
+              <li className="text-light d-flex align-items-center gap-2" style={{ cursor: "pointer", padding: "5px 10px" }} onClick={() => navigate("/blogcards")}>
                 <i className="bi bi-card-list"></i> 
                 <span>Blog Cards</span>
               </li>
@@ -87,7 +90,7 @@ const Sidebar = () => {
         </li>
 
         <li className="nav-item">
-          <a className="nav-link text-white d-flex align-items-center gap-2" style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }} onClick={() => navigate("/contact")}>
+          <a className="nav-link text-white d-flex align-items-center gap-2" style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }} onClick={() => navigate("/contactus")}>
             <i className="bi bi-telephone" style={{ fontSize: "18px" }}></i> 
             <span>Contact</span>
           </a>

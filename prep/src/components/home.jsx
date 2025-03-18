@@ -52,7 +52,7 @@ const Home = () => {
   };
 
   return (
-    <div className="container d-flex justify-content-center align-items-center vh-100 bg-warning-subtle">
+    <div className="container d-flex justify-content-center  align-items-center vh-100 bg-warning-subtle" >
       <div className="w-50">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <h4 className="text-center">HEADER</h4>

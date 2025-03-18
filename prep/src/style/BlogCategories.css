@@ -1,0 +1,33 @@
+.blog-categories-container {
+    background-color: #FFF3E0;
+    height: 100vh; 
+    width: 100%; 
+    overflow-x: hidden;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Flexbox for title and buttons alignment */
+.title-buttons-container {
+    display: flex;
+    justify-content: space-between; /* Title centered, buttons on the right */
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 20px;
+}
+
+/* Center the title */
+.title {
+    flex: 1;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* Align buttons to the right */
+.top-buttons {
+    display: flex;
+    gap: 10px;
+}

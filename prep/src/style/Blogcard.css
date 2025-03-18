@@ -1,0 +1,74 @@
+body {
+    background-color: #fff8dc; /* Full-page background */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .blog-card {
+    width: 100%; /* Full width */
+    /* Limit width for better readability */
+    margin-top: 50px; /* Center the form */
+    padding: 0; /* Remove padding */
+    background: transparent; /* Remove box */
+    box-shadow: none; /* Remove shadow */
+    border-radius: 0; /* Remove border */
+  }
+  
+  h4 {
+    font-weight:700;
+    text-align: left;
+  }
+  
+  .btn {
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin: 5px 5px 15px 0;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .search-btn {
+    background: #FF6B45;
+    color: white;
+    justify-content: end;
+  }
+  
+  .edit-btn {
+    background: #FF6B45;
+    color: white;
+  }
+  
+  .new-btn {
+    background: #FF6B45;
+    color: white;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .save-btn {
+    width: 100%;
+    background: #FF6B45;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  

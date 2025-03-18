@@ -4,12 +4,13 @@ import { Col, Row } from 'react-bootstrap'
 
 function Staticlayout({children}) {
   return (
-    <div>
-        <Row>
+    <div >
+        <Row >
             <Col md={2}>
                 <Sidebar/>
             </Col>
-            <Col md={10}>
+            
+            <Col md={10} >
                 {children}
             </Col>
         </Row>

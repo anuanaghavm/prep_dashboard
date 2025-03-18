@@ -27,7 +27,7 @@ function App() {
 
 
     </Routes> */}
-    <div className="">
+    <div className="" >
       <UserRoute/>
     </div>
     </>
