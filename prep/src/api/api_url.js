@@ -10,12 +10,20 @@ const API_URL = {
       CONTACT_PATCH: (id) => `/api/contact/${id}/`,
       CONTACT_DELETE: (id) => `/api/contact/${id}/`,
     },
+    
     BLOGCATEGORIES: {
         GET_BLOGCATEGORIES: "/api/categories/",
         POST_BLOGCATEGORIES: "/api/categories/",
         PATCH_BLOGCATEGORIES: (id) => `/api/categories/${id}/`,
         DELETE_BLOGCATEGORIES: (id) => `/api/categories/${id}/`,
       },
+    
+    BLOGCARD: {
+        GET_BLOGCARD: "/api/blogcard/",
+        POST_BLOGCARD: "/api/blogcard/",
+        PATCH_BLOGCARD: (id) => `/api/blogcard/${id}/`,
+        DELETE_BLOGCARD: (id) => `/api/blogcard/${id}/`,
+      },  
 
 };
   
