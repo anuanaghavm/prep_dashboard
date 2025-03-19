@@ -2,10 +2,13 @@ import React from "react";
 import Staticlayout from "./Staticlayout";
 import Home from "./home";
 import Login from "../components/login/Login";
-import Dashboard from "../components/dashboard";
+import Dashboard from "../components/Dashboard";
 import Blogcategory from "./blogs/Blogcategory";
 import Blogcard from "./blogs/Blogcard";
 import Contact from "./contactus/Contact";
+import Course from "./course/Course";
+import Preferred from "./course/Preferred";
+
 import { elements } from "chart.js";
 
 const routes = [
@@ -54,6 +57,26 @@ const routes = [
       </Contact>
     </Staticlayout>
   )
+},
+
+
+{
+  path: "/course",
+  element: (
+    <Staticlayout>
+      <Course/>
+    </Staticlayout>
+  )
+},
+
+
+{
+  path: "/preferred",
+  element: (
+    <Staticlayout>
+      <Preferred />
+    </Staticlayout>
+  ),
 },
 ];
 

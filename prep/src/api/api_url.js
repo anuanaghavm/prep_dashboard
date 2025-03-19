@@ -23,7 +23,17 @@ const API_URL = {
         POST_BLOGCARD: "/api/blogcard/",
         PATCH_BLOGCARD: (id) => `/api/blogcard/${id}/`,
         DELETE_BLOGCARD: (id) => `/api/blogcard/${id}/`,
-      },  
+      }, 
+    FORM: {
+        GET_ALL: "/api/submit-form/list/",
+        CREATE: "/api/submit-form/",
+        UPDATE: (id) => `/api/submit-form/${id}/`,
+        DELETE: (id) => `/api/submit-form/${id}/`,
+    },
+    PREFERRED_PROGRAM: {
+        GET_ALL: "/api/preferred-programs/",
+        CREATE: "/api/preferred-programs/",
+    },
 
 };
   

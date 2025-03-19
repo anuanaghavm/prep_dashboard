@@ -1,0 +1,14 @@
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+
+.text-primary {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.text-danger {
+    cursor: pointer;
+    font-size: 20px;
+}

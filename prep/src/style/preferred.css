@@ -1,0 +1,19 @@
+.form-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.custom-select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 100%;
+    background-color: #fff;
+    transition: border-color 0.2s;
+}
+
+.custom-select:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}

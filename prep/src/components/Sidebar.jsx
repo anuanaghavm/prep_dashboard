@@ -7,25 +7,30 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [isBlogOpen, setIsBlogOpen] = useState(false);
+  const [isPreferredProgramsOpen, setIsPreferredProgramsOpen] = useState(false);
 
   // Toggle Blogs submenu
   const handleClick = () => {
     setIsBlogOpen(!isBlogOpen);
   };
 
+  // Toggle Preferred Programs submenu
+  const handlePreferredProgramsClick = () => {
+    setIsPreferredProgramsOpen(!isPreferredProgramsOpen);
+  };
+
   return (
     <div
-  className="d-flex flex-column p-3 shadow-sm"
-  style={{
-    width: "250px", // Set fixed width
-    backgroundColor: "#FF6B45",
-    height: "100vh", // Ensure it fills the full height
-    position: "fixed", // Fix it to the left
-    top: 0,
-    left: 0,
-  }}
->
-
+      className="d-flex flex-column p-3 shadow-sm"
+      style={{
+        width: "250px",
+        backgroundColor: "#FF6B45",
+        height: "100vh",
+        position: "fixed",
+        top: 0,
+        left: 0,
+      }}
+    >
       {/* Sidebar Header with Logo */}
       <div
         className="text-center mb-3"
@@ -82,11 +87,27 @@ const Sidebar = () => {
           )}
         </li>
 
+        {/* Preferred Programs Dropdown */}
         <li className="nav-item">
-          <a className="nav-link text-white d-flex align-items-center gap-2" style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }} onClick={() => navigate("/all-courses")}>
-            <i className="bi bi-journal-text" style={{ fontSize: "18px" }}></i> 
-            <span>All Courses</span>
-          </a>
+          <div className="d-flex align-items-center justify-content-between text-white" style={{ cursor: "pointer", padding: "10px" }} onClick={handlePreferredProgramsClick}>
+            <div className="d-flex align-items-center gap-2">
+              <i className="bi bi-bookmark" style={{ fontSize: "18px" }}></i> 
+              <span>Course</span>
+            </div>
+            <span>{isPreferredProgramsOpen ? "▲" : "▼"}</span>
+          </div>
+          {isPreferredProgramsOpen && (
+            <ul className="list-unstyled ms-3">
+              <li className="text-light d-flex align-items-center gap-2" style={{ cursor: "pointer", padding: "5px 10px" }} onClick={() => navigate("/preferred")}>
+                <i className="bi bi-journal-bookmark"></i> 
+                <span>Preferred Programs</span>
+              </li>
+              <li className="text-light d-flex align-items-center gap-2" style={{ cursor: "pointer", padding: "5px 10px" }} onClick={() => navigate("/course")}>
+                <i className="bi bi-plus-circle"></i> 
+                <span>all courses</span>
+              </li>
+            </ul>
+          )}
         </li>
 
         <li className="nav-item">
