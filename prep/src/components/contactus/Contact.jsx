@@ -72,7 +72,7 @@ const Contact = () => {
       if (editId) {
         await allaxios.patch(API_URL.CONTACT.CONTACT_PATCH(editId), formData);
       } else {
-        await axios.post(API_URL.CONTACT.POST_CONTACT, formData);
+        await allaxios.post(API_URL.CONTACT.POST_CONTACT, formData);
       }
       fetchContacts();
       setShowForm(false);
