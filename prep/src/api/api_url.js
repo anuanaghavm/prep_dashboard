@@ -33,6 +33,10 @@ const API_URL = {
     PREFERRED_PROGRAM: {
         GET_ALL: "/api/preferred-programs/",
         CREATE: "/api/preferred-programs/",
+        UPDATE: (id) => `/api/preferred-programs/${id}/`,
+        DELETE: (id) => `/api/preferred-programs/${id}/`,
+
+        
     },
 
 };
