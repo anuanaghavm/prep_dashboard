@@ -51,8 +51,11 @@ const PreferredProgram = () => {
       alert("Please enter a program name.");
       return;
     }
+    
+    console.log(editData);
+    
 
-    if(editData.id){
+    if(editData?.id){
         try{
             const response = await allaxios.patch(API_URL.PREFERRED_PROGRAM.UPDATE(editData.id), {
                 name: newProgramName,
@@ -89,13 +92,12 @@ const PreferredProgram = () => {
 
   return (
     <div className="container mt-4">
-      <h3>Preferred Programs</h3>
-
-      {/* Add New Button */}
-      <Button variant="primary" className="mb-3" onClick={handleShowModal}>
-        Add New
-      </Button>
-
+      <div className=" d-flex justify-content-between">
+      <h2 style={{ fontWeight: "bold" }}>Preferred Programs</h2>
+      <Button className="" variant="primary" onClick={() => setShowModal(true)}>
+            Add New
+          </Button>
+      </div>
       {/* Table to display programs */}
       <Table striped bordered hover>
         <thead>

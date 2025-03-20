@@ -96,10 +96,12 @@ const FormSubmission = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Form Submissions</h2>
-      <Button variant="primary" onClick={() => setShowModal(true)}>
-        Add New
-      </Button>
+      <div className=" d-flex justify-content-between">
+          <h2 className="">Form Submissions</h2>
+          <Button className="" variant="primary" onClick={() => setShowModal(true)}>
+            Add New
+          </Button>
+      </div>
 
       <Table striped bordered hover className="mt-3">
         <thead>
