@@ -3,6 +3,7 @@ import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import allaxios from "../../api/axios";
 import API_URL from "../../api/api_url";
 import { Modal, Button, Form, Table } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const FormSubmission = () => {
   const [formSubmissions, setFormSubmissions] = useState([]);
@@ -54,13 +55,12 @@ const FormSubmission = () => {
     e.preventDefault();
     try {
       if (editId) {
-        const response = await allaxios.patch(
-          API_URL.FORM.UPDATE(editId),
-          formData
-        );
+        const response = await allaxios.patch(API_URL.FORM.UPDATE(editId), formData);
         console.log(response);
+        toast.success("Form updated successfully!");
       } else {
         await allaxios.post(API_URL.FORM.CREATE, formData);
+        toast.success("Form submitted successfully!");
       }
       fetchForms();
       setShowModal(false);
@@ -70,13 +70,14 @@ const FormSubmission = () => {
         mobile_number: "",
         email: "",
         preferred_program: "",
-        college_studied: "", // Reset new field
+        college_studied: "",
       });
     } catch (error) {
       console.error("Error submitting form:", error);
+      toast.error("Failed to submit the form. Please try again.");
     }
   };
-
+  
   const handleEdit = (form) => {
     setFormData(form);
     setEditId(form.id);
@@ -87,6 +88,7 @@ const FormSubmission = () => {
     if (window.confirm("Are you sure you want to delete this entry?")) {
       try {
         await allaxios.delete(API_URL.FORM.DELETE(id));
+        toast.success("Form deleted successfully!");
         fetchForms();
       } catch (error) {
         console.error("Error deleting form:", error);

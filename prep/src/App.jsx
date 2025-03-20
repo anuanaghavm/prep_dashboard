@@ -10,6 +10,7 @@ import Dash from './components/Dash'
 import Home from './components/home'
 import Sidebar from './components/Sidebar'
 import UserRoute from './components/routesindex'
+import { ToastContainer } from 'react-toastify'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -30,6 +31,7 @@ function App() {
     <div className="" >
       <UserRoute/>
     </div>
+    <ToastContainer/>
     </>
   )
 }

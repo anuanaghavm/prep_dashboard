@@ -51,52 +51,57 @@ const PreferredProgram = () => {
       alert("Please enter a program name.");
       return;
     }
-    
+
     console.log(editData);
-    
 
-    if(editData?.id){
-        try{
-            const response = await allaxios.patch(API_URL.PREFERRED_PROGRAM.UPDATE(editData.id), {
-                name: newProgramName,
-            });
-
-            // Update table with new program
-            fetchPreferredPrograms();
-            handleCloseModal();
-        }catch(error){
-            console.error("Error updating program:",
-            error); 
-        }
-    }else{
-        try {
-            const response = await allaxios.post(API_URL.PREFERRED_PROGRAM.CREATE, {
-              name: newProgramName,
-            });
-      
-            // Update table with new program
-            setPreferredPrograms([...preferredPrograms, response.data]);
-      
-            handleCloseModal();
-          } catch (error) {
-            console.error("Error adding program:", error);
+    if (editData?.id) {
+      try {
+        const response = await allaxios.patch(
+          API_URL.PREFERRED_PROGRAM.UPDATE(editData.id),
+          {
+            name: newProgramName,
           }
+        );
+
+        // Update table with new program
+        fetchPreferredPrograms();
+        handleCloseModal();
+      } catch (error) {
+        console.error("Error updating program:", error);
+      }
+    } else {
+      try {
+        const response = await allaxios.post(API_URL.PREFERRED_PROGRAM.CREATE, {
+          name: newProgramName,
+        });
+
+        // Update table with new program
+        setPreferredPrograms([...preferredPrograms, response.data]);
+
+        handleCloseModal();
+      } catch (error) {
+        console.error("Error adding program:", error);
+      }
     }
   };
 
-  useEffect(()=>{
-        if(editData){
-            setNewProgramName(editData.name);
-        }
-  },[editData])
+  useEffect(() => {
+    if (editData) {
+      setNewProgramName(editData.name);
+    }
+  }, [editData]);
 
   return (
     <div className="container mt-4">
       <div className=" d-flex justify-content-between">
-      <h2 style={{ fontWeight: "bold" }}>Preferred Programs</h2>
-      <Button className="" variant="primary" onClick={() => setShowModal(true)}>
-            Add New
-          </Button>
+        <h2 style={{ fontWeight: "bold" }}>Preferred Programs</h2>
+        <Button
+          className=""
+          variant="primary"
+          onClick={() => setShowModal(true)}
+        >
+          Add New
+        </Button>
       </div>
       {/* Table to display programs */}
       <Table striped bordered hover>
