@@ -68,7 +68,7 @@ const BlogCategories = () => {
           formData
         );
       } else {
-        await axios.post(API_URL.BLOGCATEGORIES.POST_BLOGCATEGORIES, formData);
+        await allaxios.post(API_URL.BLOGCATEGORIES.POST_BLOGCATEGORIES, formData);
       }
       fetchBlogCategories();
       setShowForm(false);
