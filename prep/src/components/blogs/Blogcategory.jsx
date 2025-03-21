@@ -105,7 +105,7 @@ const BlogCategories = () => {
                 <td>{category.category}</td>
                 <td>
                   <button
-                    className="btn btn-warning btn-sm mx-1"
+                    className="btn btn-sm mx-1" style={{backgroundColor:"skyblue"}}
                     onClick={() => handleEdit(category)}
                   >
                     <AiFillEdit />
@@ -129,10 +129,10 @@ const BlogCategories = () => {
         </tbody>
       </table>
 
-      <Modal centered show={showForm} onHide={() => setShowForm(false)}>
+      <Modal size="mg" centered show={showForm} onHide={() => setShowForm(false)}>
         <div className="modal-overlay">
           <div className="modal-content p-3">
-            <h5>Add Category</h5>
+          <h5><b>{editId ? "Edit Category" : "Add Category"}</b></h5>
             {error && <p className="text-danger">{error}</p>}
             <form onSubmit={handleSubmit}>
               <input
