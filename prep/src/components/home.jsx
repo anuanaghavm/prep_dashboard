@@ -48,6 +48,8 @@ const Home = () => {
       fileInputRef.current.value = ""; // ✅ Reset file input
     }
 
+
+    
     console.log("Form Reset!");
   };
 
@@ -113,6 +115,17 @@ const Home = () => {
               onChange={(e) => setUrl(e.target.value)}
             />
           </div>
+          <div className="mb-3">
+            <label className="form-label fw-bold">URL</label>
+            <input
+              type="text"
+              className="form-control bg-warning-subtle"
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+            />
+          </div>
+
+
 
           <button type="submit" className="btn w-100 text-white" style={{ backgroundColor: "#15938F" }}>
             Save

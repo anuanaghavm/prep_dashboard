@@ -8,8 +8,7 @@ import Blogcard from "./blogs/Blogcard";
 import Contact from "./contactus/Contact";
 import Course from "./course/Course";
 import Preferred from "./course/Preferred";
-
-import { elements } from "chart.js";
+import ContactUsPageSeo from "./Seo/ContactUsPageSeo";
 
 const routes = [
   {
@@ -41,43 +40,45 @@ const routes = [
     ),
   },
   {
-  path: "/blogcards",
-  element: (
-    <Staticlayout>
-      <Blogcard>
-      </Blogcard>
-    </Staticlayout>
-  ),
-},
-{
-  path: "/contactus",
-  element: (
-    <Staticlayout>
-      <Contact>
-      </Contact>
-    </Staticlayout>
-  )
-},
-
-
-{
-  path: "/course",
-  element: (
-    <Staticlayout>
-      <Course/>
-    </Staticlayout>
-  )
-},
-
-
-{
-  path: "/preferred",
-  element: (
-    <Staticlayout>
-      <Preferred />
-    </Staticlayout>
-  ),
-},
+    path: "/blogcards",
+    element: (
+      <Staticlayout>
+        <Blogcard />
+      </Staticlayout>
+    ),
+  },
+  {
+    path: "/contactus",
+    element: (
+      <Staticlayout>
+        <Contact />
+      </Staticlayout>
+    ),
+  },
+  {
+    path: "/course",
+    element: (
+      <Staticlayout>
+        <Course />
+      </Staticlayout>
+    ),
+  },
+  {
+    path: "/preferred",
+    element: (
+      <Staticlayout>
+        <Preferred />
+      </Staticlayout>
+    ),
+  },
+  {
+    path: "/contactusseo",
+    element: (
+      <Staticlayout>
+        <ContactUsPageSeo />
+      </Staticlayout>
+    ),
+  },
 ];
 
 export default routes;
