@@ -41,8 +41,8 @@ const API_URL = {
     META_TAG_CONTACT: {
       GET_ALL: "/api/contactmeta/",
       CREATE: "/api/contactmeta/",
-      UPDATE: (id) => `/api/contactmetall/${id}/`,
-      DELETE: (id) => `/api/contactmetall/${id}/`,
+      UPDATE: (id) => `/api/contactmeta/${id}/`,
+      DELETE: (id) => `/api/contactmeta/${id}/`,
     },
         
   
