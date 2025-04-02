@@ -44,7 +44,12 @@ const API_URL = {
       UPDATE: (id) => `/api/contactmeta/${id}/`,
       DELETE: (id) => `/api/contactmeta/${id}/`,
     },
-        
+    META_TAG_COURSES: {
+      GET_ALL: "/api/coursemeta/",
+      CREATE: "/api/coursemeta/",
+      UPDATE: (id) => `/api/coursemeta/${id}/`,
+      DELETE: (id) => `/api/coursemeta/${id}/`,
+    },
   
 
 };

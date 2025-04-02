@@ -193,7 +193,7 @@ const Sidebar = () => {
               <li
                 className="text-light d-flex align-items-center gap-2"
                 style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/courses-seo")}
+                onClick={() => navigate("/CoursesTagSeo")}
               >
                 <i className="bi bi-journal-bookmark"></i>
                 <span>Courses SEO</span>
@@ -217,6 +217,8 @@ const Sidebar = () => {
               </li>
             </ul>
           )}
+
+          
         </li>
       </ul>
     </div>
