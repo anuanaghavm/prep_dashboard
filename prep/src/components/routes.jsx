@@ -9,6 +9,7 @@ import Contact from "./contactus/Contact";
 import Course from "./course/Course";
 import Preferred from "./course/Preferred";
 import ContactUsPageSeo from "./Seo/ContactUsPageSeo";
+import MetaTagsBlogForm from "./Seo/MetaTagsBlogForm";
 
 const routes = [
   {
@@ -68,6 +69,14 @@ const routes = [
     element: (
       <Staticlayout>
         <Preferred />
+      </Staticlayout>
+    ),
+  },
+  {
+    path: "/MetaTagsBlogForm",
+    element: (
+      <Staticlayout>
+        <MetaTagsBlogForm />
       </Staticlayout>
     ),
   },

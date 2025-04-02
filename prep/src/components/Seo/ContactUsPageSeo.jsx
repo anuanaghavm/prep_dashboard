@@ -99,7 +99,7 @@ const MetaTagsContacts = () => {
   return (
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center">
-        <h2 style={{ fontWeight: "bold" }}>Meta Tags - Contacts</h2>
+        <h2 style={{ fontWeight: "bold" }}>Meta Tags-Contacts</h2>
         <Button variant="primary" onClick={handleShowModal}>
           Add New
         </Button>

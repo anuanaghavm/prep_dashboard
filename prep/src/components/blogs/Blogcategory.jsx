@@ -105,7 +105,7 @@ const BlogCategories = () => {
                 <td>{category.category}</td>
                 <td>
                   <button
-                    className="btn btn-sm mx-1" style={{backgroundColor:"skyblue"}}
+                    className="btn btn-sm mx-1" style={{backgroundColor:"#3595f6"}}
                     onClick={() => handleEdit(category)}
                   >
                     <AiFillEdit />
