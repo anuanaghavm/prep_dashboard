@@ -9,7 +9,7 @@ import Contact from "./contactus/Contact";
 import Course from "./course/Course";
 import Preferred from "./course/Preferred";
 import ContactUsPageSeo from "./Seo/ContactUsPageSeo";
-
+import CoursesTagSeo from "./Seo/CoursesTagSeo";
 const routes = [
   {
     path: "/",
@@ -79,6 +79,18 @@ const routes = [
       </Staticlayout>
     ),
   },
+  
+
+  {
+    path: "/CoursesTagSeo",
+    element: (
+      <Staticlayout>
+        <CoursesTagSeo />
+      </Staticlayout>
+    ),
+  },
+
+
 ];
 
 export default routes;
