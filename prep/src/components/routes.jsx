@@ -11,6 +11,8 @@ import Preferred from "./course/Preferred";
 import ContactUsPageSeo from "./Seo/ContactUsPageSeo";
 import CoursesTagSeo from "./Seo/CoursesTagSeo";
 import MetaTagsBlogForm from "./Seo/MetaTagsBlogForm";
+import MetaTagsAboutUs from "./Seo/MetaTagsAboutUs";
+import MetaTagsHome from "./Seo/MetaTagsHome";
 
 const routes = [
   {
@@ -89,7 +91,14 @@ const routes = [
       </Staticlayout>
     ),
   },
-  
+  {
+    path: "/aboutusseo",
+    element : (
+      <Staticlayout>
+        <MetaTagsAboutUs />
+      </Staticlayout>
+    ),
+  },
 
   {
     path: "/CoursesTagSeo",
@@ -99,7 +108,14 @@ const routes = [
       </Staticlayout>
     ),
   },
-
+  {
+    path: "/homeseo",
+    element: (
+      <Staticlayout>
+        <MetaTagsHome />
+      </Staticlayout>
+    )
+  }
 
 ];
 

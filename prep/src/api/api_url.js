@@ -50,13 +50,24 @@ const API_URL = {
       UPDATE: (id) => `/api/coursemeta/${id}/`,
       DELETE: (id) => `/api/coursemeta/${id}/`,
     },
-    META_TAG_BLOGES:{
+    META_TAG_BLOGES: {
       GET_ALL: "/api/blogmeta/",
       CREATE: "/api/blogmeta/",
       UPDATE: (id) => `/api/blogmeta/${id}/`,
       DELETE: (id) => `/api/blogmeta/${id}/`,
+    },
+    META_TAG_ABOUTUS: {
+      GET_ALL: "/api/aboutmeta/",
+      CREATE: "/api/aboutmeta/",
+      UPDATE: (id) => `/api/aboutmeta/${id}/`,
+      DELETE: (id) => `/api/aboutmeta/${id}/`,
+    },
+    META_TAG_HOME: {
+      GET_ALL: "/api/homemeta/",
+      CREATE: "/api/homemeta/",
+      UPDATE: (id) => `/api/homemeta/${id}/`,
+      DELETE: (id) => `/api/homemeta/${id}/`,
     }
-
 };
   
 export default API_URL;

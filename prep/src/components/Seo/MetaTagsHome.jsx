@@ -4,7 +4,7 @@ import API_URL from "../../api/api_url";
 import { Table, Button, Modal, Form } from "react-bootstrap";
 import { AiFillDelete, AiFillEdit, AiFillEye } from "react-icons/ai";
 
-const ContactUsPageSeo = () => {
+const MetaTagsHome = () => {
   const [metaTags, setMetaTags] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [viewModal, setViewModal] = useState(false);
@@ -18,7 +18,7 @@ const ContactUsPageSeo = () => {
 
   const fetchMetaTags = async () => {
     try {
-      const response = await allaxios.get(API_URL.META_TAG_CONTACT.GET_ALL);
+      const response = await allaxios.get(API_URL.META_TAG_HOME.GET_ALL);
       setMetaTags(response.data);
     } catch (error) {
       console.error("Error fetching meta tags:", error);
@@ -45,7 +45,7 @@ const ContactUsPageSeo = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     try {
-      await allaxios.delete(API_URL.META_TAG_CONTACT.DELETE(id));
+      await allaxios.delete(API_URL.META_TAG_HOME.DELETE(id));
       fetchMetaTags();
     } catch (error) {
       console.error("Delete error:", error);
@@ -80,14 +80,14 @@ const ContactUsPageSeo = () => {
     try {
       if (editData?.id) {
         await allaxios.patch(
-          API_URL.META_TAG_CONTACT.UPDATE(editData.id),
+          API_URL.META_TAG_HOME.UPDATE(editData.id),
           payload,
           {
             headers: { "Content-Type": "multipart/form-data" },
           }
         );
       } else {
-        await allaxios.post(API_URL.META_TAG_CONTACT.CREATE, payload, {
+        await allaxios.post(API_URL.META_TAG_HOME.CREATE, payload, {
           headers: { "Content-Type": "multipart/form-data" },
         });
       }
@@ -101,7 +101,7 @@ const ContactUsPageSeo = () => {
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-between">
-        <h2><u>Meta Tags-contact</u>
+        <h2><u>Meta Tags-Home</u>
         </h2>
         <Button className="btn btn-primary" onClick={handleShowModal}>
           Add New
@@ -284,4 +284,4 @@ const ContactUsPageSeo = () => {
   );
 };
 
-export default ContactUsPageSeo;
+export default MetaTagsHome;

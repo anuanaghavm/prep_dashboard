@@ -224,6 +224,28 @@ const MetaTagsBlogForm = () => {
               </Form.Group>
             ))}
 
+            {/* Additional Text Fields */}
+            {[
+              "anchor_text",
+              "internal_links",
+              "external_links",
+              "schema_type",
+              "json_ld_schema",
+              "image_alt_text",
+              "og_title",
+              "twitter_card",
+              "twitter_title",
+            ].map((field) => (
+              <Form.Group className="mb-2" key={field}>
+                <Form.Label>{field.replace("_", " ")}</Form.Label>
+                <Form.Control
+                  name={field}
+                  value={formData[field] || ""}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            ))}
+
             {["image_filename", "og_image", "twitter_image"].map((field) => (
               <Form.Group className="mb-2" key={field}>
                 <Form.Label>{field.replace("_", " ")}</Form.Label>

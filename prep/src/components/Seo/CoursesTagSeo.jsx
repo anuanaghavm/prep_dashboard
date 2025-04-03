@@ -2,13 +2,19 @@ import React, { useState, useEffect } from "react";
 import allaxios from "../../api/axios";
 import API_URL from "../../api/api_url";
 import { Table, Button, Modal, Form } from "react-bootstrap";
-import { AiFillDelete, AiFillEdit } from "react-icons/ai";
+import { AiFillDelete, AiFillEdit, AiFillEye } from "react-icons/ai";
 
-const CoursesTagSeo = () => {
+const  CoursesTagSeo= () => {
   const [metaTags, setMetaTags] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [viewModal, setViewModal] = useState(false);
   const [formData, setFormData] = useState({});
+  const [viewData, setViewData] = useState(null);
   const [editData, setEditData] = useState(null);
+
+  useEffect(() => {
+    fetchMetaTags();
+  }, []);
 
   const fetchMetaTags = async () => {
     try {
@@ -19,10 +25,6 @@ const CoursesTagSeo = () => {
     }
   };
 
-  useEffect(() => {
-    fetchMetaTags();
-  }, []);
-
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
     setShowModal(false);
@@ -30,15 +32,23 @@ const CoursesTagSeo = () => {
     setEditData(null);
   };
 
+  const handleView = (data) => {
+    setViewData(data);
+    setViewModal(true);
+  };
+
+  const handleCloseViewModal = () => {
+    setViewModal(false);
+    setViewData(null);
+  };
+
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this item?")) return;
     try {
       await allaxios.delete(API_URL.META_TAG_COURSES.DELETE(id));
       fetchMetaTags();
-      alert("Meta tag deleted successfully");
     } catch (error) {
-      console.error("Delete error:", error.response?.data || error.message);
-      alert("Failed to delete. Please check console for more info.");
+      console.error("Delete error:", error);
     }
   };
 
@@ -69,9 +79,13 @@ const CoursesTagSeo = () => {
 
     try {
       if (editData?.id) {
-        await allaxios.patch(API_URL.META_TAG_COURSES.UPDATE(editData.id), payload, {
-          headers: { "Content-Type": "multipart/form-data" },
-        });
+        await allaxios.patch(
+          API_URL.META_TAG_COURSES.UPDATE(editData.id),
+          payload,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
       } else {
         await allaxios.post(API_URL.META_TAG_COURSES.CREATE, payload, {
           headers: { "Content-Type": "multipart/form-data" },
@@ -85,10 +99,11 @@ const CoursesTagSeo = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <div className="d-flex justify-content-between align-items-center">
-        <h2 style={{ fontWeight: "bold" }}>Courses Tag SEO</h2>
-        <Button variant="primary" onClick={handleShowModal}>
+    <div className="container mt-5">
+      <div className="d-flex justify-content-between">
+        <h2><u>Meta Tags-contact</u>
+        </h2>
+        <Button className="btn btn-primary" onClick={handleShowModal}>
           Add New
         </Button>
       </div>
@@ -98,7 +113,10 @@ const CoursesTagSeo = () => {
           <tr>
             <th>Title</th>
             <th>Slug</th>
+            <th>Canonical URL</th>
             <th>Meta Description</th>
+            <th>H1 Tag</th>
+            <th>Word Count</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -107,146 +125,156 @@ const CoursesTagSeo = () => {
             <tr key={item.id}>
               <td>{item.title}</td>
               <td>{item.slug}</td>
+              <td>{item.canonical_url}</td>
               <td>{item.meta_description}</td>
+              <td>{item.h1_tag}</td>
+              <td>{item.word_count}</td>
               <td>
-                <AiFillEdit className="text-primary me-2" onClick={() => handleEdit(item)} />
-                <AiFillDelete className="text-danger" onClick={() => handleDelete(item.id)} />
+                <AiFillEye
+                  className="text-info me-2"
+                  onClick={() => handleView(item)}
+                />
+                <AiFillEdit
+                  className="text-primary me-2"
+                  onClick={() => handleEdit(item)}
+                />
+                <AiFillDelete
+                  className="text-danger"
+                  onClick={() => handleDelete(item.id)}
+                />
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
 
+      {/* View Modal */}
+      <Modal show={viewModal} onHide={handleCloseViewModal} size="lg" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>View Meta Tag</Modal.Title>
+        </Modal.Header>
+        <Modal.Body style={{ height: "70vh", overflowY: "auto" }}>
+          {viewData ? (
+            <Table striped bordered hover>
+              <thead>
+                <tr>
+                  <th>Field</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                {Object.entries(viewData).map(([key, value]) => (
+                  <tr key={key}>
+                    <td>
+                      <strong>{key.replace("_", " ")}</strong>
+                    </td>
+                    <td>{value?.toString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          ) : (
+            <p>No data available</p>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseViewModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Add/Edit Modal */}
       <Modal show={showModal} onHide={handleCloseModal} size="lg" centered>
         <Modal.Header closeButton>
-          <Modal.Title>{editData ? "Edit" : "Add"} Courses Tag SEO</Modal.Title>
+          <Modal.Title>{editData ? "Edit" : "Add"} Meta Tag</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {/* Meta Tags */}
-            <Form.Group className="mb-2">
-              <Form.Label>Title</Form.Label>
-              <Form.Control name="title" value={formData.title || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Meta Description</Form.Label>
-              <Form.Control as="textarea" rows={3} name="meta_description" value={formData.meta_description || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Meta Keywords</Form.Label>
-              <Form.Control as="textarea" rows={2} name="meta_keywords" value={formData.meta_keywords || ""} onChange={handleChange} />
-            </Form.Group>
+            {["title", "slug", "canonical_url", "h1_tag", "word_count"].map(
+              (field) => (
+                <Form.Group className="mb-2" key={field}>
+                  <Form.Label>{field.replace("_", " ")}</Form.Label>
+                  <Form.Control
+                    name={field}
+                    value={formData[field] || ""}
+                    onChange={handleChange}
+                  />
+                </Form.Group>
+              )
+            )}
 
-            {/* URL Optimization */}
-            <Form.Group className="mb-2">
-              <Form.Label>Slug</Form.Label>
-              <Form.Control name="slug" value={formData.slug || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Canonical URL</Form.Label>
-              <Form.Control name="canonical_url" value={formData.canonical_url || ""} onChange={handleChange} />
-            </Form.Group>
+            {[
+              "meta_description",
+              "meta_keywords",
+              "content",
+              "og_description",
+              "twitter_description",
+            ].map((field) => (
+              <Form.Group className="mb-2" key={field}>
+                <Form.Label>{field.replace("_", " ")}</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  name={field}
+                  value={formData[field] || ""}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            ))}
 
-            {/* Header Tags */}
-            <Form.Group className="mb-2">
-              <Form.Label>H1 Tag</Form.Label>
-              <Form.Control name="h1_tag" value={formData.h1_tag || ""} onChange={handleChange} />
-            </Form.Group>
+            {/* Additional Text Fields */}
+            {[
+              "anchor_text",
+              "internal_links",
+              "external_links",
+              "schema_type",
+              "json_ld_schema",
+              "image_alt_text",
+              "og_title",
+              "twitter_card",
+              "twitter_title",
+            ].map((field) => (
+              <Form.Group className="mb-2" key={field}>
+                <Form.Label>{field.replace("_", " ")}</Form.Label>
+                <Form.Control
+                  name={field}
+                  value={formData[field] || ""}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            ))}
 
-            {/* Content Section */}
-            <Form.Group className="mb-2">
-              <Form.Label>Content</Form.Label>
-              <Form.Control as="textarea" name="content" value={formData.content || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Word Count</Form.Label>
-              <Form.Control type="number" name="word_count" value={formData.word_count || ""} onChange={handleChange} />
-            </Form.Group>
+            {["image_filename", "og_image", "twitter_image"].map((field) => (
+              <Form.Group className="mb-2" key={field}>
+                <Form.Label>{field.replace("_", " ")}</Form.Label>
+                <Form.Control
+                  type="file"
+                  name={field}
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            ))}
 
-            {/* Image Optimization */}
-            <Form.Group className="mb-2">
-              <Form.Label>Image Alt Text</Form.Label>
-              <Form.Control name="image_alt_text" value={formData.image_alt_text || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Image File</Form.Label>
-              <Form.Control type="file" name="image_filename" onChange={handleChange} />
-            </Form.Group>
-
-            {/* Internal & External Links */}
-            <Form.Group className="mb-2">
-              <Form.Label>Internal Links</Form.Label>
-              <Form.Control as="textarea" name="internal_links" value={formData.internal_links || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>External Links</Form.Label>
-              <Form.Control as="textarea" name="external_links" value={formData.external_links || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Anchor Text</Form.Label>
-              <Form.Control name="anchor_text" value={formData.anchor_text || ""} onChange={handleChange} />
-            </Form.Group>
-
-            {/* Structured Data & Schema Markup */}
-            <Form.Group className="mb-2">
-              <Form.Label>Schema Type</Form.Label>
-              <Form.Control name="schema_type" value={formData.schema_type || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>JSON-LD Schema</Form.Label>
-              <Form.Control as="textarea" name="json_ld_schema" value={formData.json_ld_schema || ""} onChange={handleChange} />
-            </Form.Group>
-
-            {/* Open Graph */}
-            <Form.Group className="mb-2">
-              <Form.Label>OG Title</Form.Label>
-              <Form.Control name="og_title" value={formData.og_title || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>OG Description</Form.Label>
-              <Form.Control as="textarea" name="og_description" value={formData.og_description || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>OG Image</Form.Label>
-              <Form.Control type="file" name="og_image" onChange={handleChange} />
-            </Form.Group>
-
-            {/* Twitter Card */}
-            <Form.Group className="mb-2">
-              <Form.Label>Twitter Card</Form.Label>
-              <Form.Control name="twitter_card" value={formData.twitter_card || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Twitter Title</Form.Label>
-              <Form.Control name="twitter_title" value={formData.twitter_title || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Twitter Description</Form.Label>
-              <Form.Control as="textarea" name="twitter_description" value={formData.twitter_description || ""} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Label>Twitter Image</Form.Label>
-              <Form.Control type="file" name="twitter_image" onChange={handleChange} />
-            </Form.Group>
-
-            {/* Indexing & Performance Options */}
-            <Form.Group className="mb-2">
-              <Form.Check type="checkbox" label="Noindex" name="noindex" checked={formData.noindex || false} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Check type="checkbox" label="Nofollow" name="nofollow" checked={formData.nofollow || false} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Check type="checkbox" label="AMP Enabled" name="amp_enabled" checked={formData.amp_enabled || false} onChange={handleChange} />
-            </Form.Group>
-            <Form.Group className="mb-2">
-              <Form.Check type="checkbox" label="Lazy Load Images" name="lazy_load_images" checked={formData.lazy_load_images || false} onChange={handleChange} />
-            </Form.Group>
-
+            {["noindex", "nofollow", "amp_enabled", "lazy_load_images"].map(
+              (field) => (
+                <Form.Check
+                  type="checkbox"
+                  label={field.replace("_", " ")}
+                  name={field}
+                  checked={formData[field] || false}
+                  onChange={handleChange}
+                  className="mb-2"
+                  key={field}
+                />
+              )
+            )}
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>Cancel</Button>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cancel
+          </Button>
           <Button variant="primary" onClick={handleSubmit}>
             {editData ? "Update" : "Create"}
           </Button>

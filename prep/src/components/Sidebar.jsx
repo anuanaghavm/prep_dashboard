@@ -177,7 +177,7 @@ const Sidebar = () => {
               <li
                 className="text-light d-flex align-items-center gap-2"
                 style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/home-seo")}
+                onClick={() => navigate("/homeseo")}
               >
                 <i className="bi bi-house"></i>
                 <span>Home SEO</span>
@@ -185,7 +185,7 @@ const Sidebar = () => {
               <li
                 className="text-light d-flex align-items-center gap-2"
                 style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/aboutus-seo")}
+                onClick={() => navigate("/aboutusseo")}
               >
                 <i className="bi bi-info-circle"></i>
                 <span>AboutUs SEO</span>
