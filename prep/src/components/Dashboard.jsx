@@ -1,122 +1,116 @@
 import React from "react";
 import { Container, Row, Col, Card, Table, Dropdown } from "react-bootstrap";
-import { Line, Pie } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend } from "chart.js";
+import { Line } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { FaYoutube, FaInstagram, FaFacebook } from "react-icons/fa";
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend
+);
 
 const Dashboard = () => {
   const lineData = {
     labels: ["JAN-MAR", "APR-JUN", "JUL-SEP", "OCT-DEC"],
     datasets: [
       {
-        label: "TVL 2022",
-        data: [30, 25, 28, 35],
-        borderColor: "#1f77b4",
+        label: "Engagement Rate",
+        data: [92, 94, 95, 93],
+        borderColor: "#ff4c4c",
         backgroundColor: "transparent",
         tension: 0.4,
-      },
-      {
-        label: "TVL 2021",
-        data: [32, 22, 26, 31],
-        borderColor: "#98df8a",
-        backgroundColor: "transparent",
-        tension: 0.4,
-      },
-    ],
-  };
-
-  const pieData = {
-    labels: ["ETHEREUM", "BSC", "TRON"],
-    datasets: [
-      {
-        data: [45, 30, 20],
-        backgroundColor: ["#3366ff", "#33cc33", "#9966ff"],
       },
     ],
   };
 
   return (
-    <Container fluid style={{ backgroundColor: "#FFDAB9", minHeight: "100vh", padding: "20px" }}>
-      <h3 className="my-3">Welcome back, Esther!</h3>
-      <p>Take a look at the updated DeFi overview</p>
+    <Container
+      fluid
+      className="p-4"
+      style={{ backgroundColor: "#f8f9fa", minHeight: "100vh" }}
+    >
+      <h2
+        className="text-center mb-4"
+        style={{ fontWeight: "bold", color: "#333" }}
+      ><b><u>
+        Dashboard</u></b>
+      </h2>
 
-      <Row>
-        <Col md={8}>
-          <Card className="p-3">
-            <h5>TVL 2022</h5>
-            <h2>$43.35B <span className="text-success">+13%</span></h2>
-            <Line data={lineData} />
+      <Row className="mb-4 text-white">
+        <Col md={4}>
+          <Card className="p-4" style={{backgroundColor :"#FF6B45"}}>
+            <h6>Total Followers</h6>
+            <h2>42,500,241</h2>
+          </Card>
+          <Card className="mt-3" style={{backgroundColor :"#b5adab"}}>
+            <div className="p-4  d-flex align-items-center justify-content-between mx-4">
+              <div className="d-flex flex-column align-items-center">
+                <FaYoutube size={30} color="red" className="me-2" />
+                <h6>YouTube</h6>
+              </div>
+              <div>
+                <h3>4.2M</h3>
+                <p>Subscribers</p>
+              </div>
+            </div>
           </Card>
         </Col>
         <Col md={4}>
-          <Card className="p-3 mb-3 text-white bg-success">
-            <h6>Change (24h)</h6>
-            <h3>-4.31%</h3>
-            <p>-0.07% this month</p>
+          <Card className="p-4" style={{backgroundColor :"#FF6B45"}}>
+            <h6>Engagement Ratio</h6>
+            <h2>94%</h2>
           </Card>
-          <Card className="p-3">
-            <h6>Maker Dominance</h6>
-            <h3>15.62%</h3>
-            <p>+1.31% this month</p>
+
+          <Card className="mt-3" style={{backgroundColor :"#b5adab"}}>
+            <div className="p-4  d-flex align-items-center justify-content-between mx-4">
+              <div className="d-flex flex-column align-items-center">
+                <FaInstagram size={30} color="#E4405F" className="me-2" />
+                <h6>Instagram</h6>
+              </div>
+              <div>
+                <h3>2.2M</h3>
+                <p>Followers</p>
+              </div>
+            </div>
+          </Card>
+        </Col>
+        <Col md={4}>
+          <Card className="p-4" style={{backgroundColor :"#FF6B45"}}>
+            <h6>Total Watch Hours</h6>
+            <h2>142B</h2>
+          </Card>
+          <Card className="mt-3" style={{backgroundColor :"#b5adab"}}>
+            <div className="p-4  d-flex align-items-center justify-content-between mx-4" >
+              <div className="d-flex flex-column align-items-center">
+                <FaFacebook size={30} color="#1877F2" className="me-2" />
+                <h6>Facebook</h6>
+              </div>
+              <div>
+                <h3>1.2M</h3>
+                <p>Followers</p>
+              </div>
+            </div>
           </Card>
         </Col>
       </Row>
 
-      <Row className="mt-3">
-        <Col md={4}>
-          <Card className="p-3">
-            <h6>Top Protocols</h6>
-            <Pie data={pieData} />
-          </Card>
-        </Col>
+      <Row>
         <Col md={8}>
-          <Card className="p-3">
-            <div className="d-flex justify-content-between align-items-center">
-              <h6>TVL Rankings</h6>
-              <Dropdown>
-                <Dropdown.Toggle variant="light">Ethereum</Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item>Ethereum</Dropdown.Item>
-                  <Dropdown.Item>BSC</Dropdown.Item>
-                  <Dropdown.Item>TRON</Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            </div>
-            <Table striped bordered hover>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Category</th>
-                  <th>Chains</th>
-                  <th>7D Change</th>
-                  <th>TVL</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>MakerDAO</td>
-                  <td>CDP</td>
-                  <td>🔗</td>
-                  <td className="text-success">+3.12%</td>
-                  <td>$6,678</td>
-                </tr>
-                <tr>
-                  <td>Convex</td>
-                  <td>CDP</td>
-                  <td>🔗</td>
-                  <td className="text-danger">-0.07%</td>
-                  <td>$2,278</td>
-                </tr>
-                <tr>
-                  <td>Instadapp</td>
-                  <td>CDP</td>
-                  <td>🔗</td>
-                  <td className="text-success">+0.62%</td>
-                  <td>$1,678</td>
-                </tr>
-              </tbody>
-            </Table>
+          <Card className="p-4 mt-3">
+            <h4><b><u>Engagement Overview</u></b></h4>
+            <Line data={lineData} />
           </Card>
         </Col>
       </Row>
