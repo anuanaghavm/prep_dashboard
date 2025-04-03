@@ -10,7 +10,7 @@ import Course from "./course/Course";
 import Preferred from "./course/Preferred";
 import ContactUsPageSeo from "./Seo/ContactUsPageSeo";
 import CoursesTagSeo from "./Seo/CoursesTagSeo";
-import MetaTagsBlogForm from "./blogs/MetaTagsBlogForm";
+import MetaTagsBlogForm from "./Seo/MetaTagsBlogForm";
 
 const routes = [
   {

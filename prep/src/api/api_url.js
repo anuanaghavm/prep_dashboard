@@ -35,7 +35,6 @@ const API_URL = {
         CREATE: "/api/preferred-programs/",
         UPDATE: (id) => `/api/preferred-programs/${id}/`,
         DELETE: (id) => `/api/preferred-programs/${id}/`,
-
         
     },
     META_TAG_CONTACT: {
@@ -44,13 +43,19 @@ const API_URL = {
       UPDATE: (id) => `/api/contactmeta/${id}/`,
       DELETE: (id) => `/api/contactmeta/${id}/`,
     },
+
     META_TAG_COURSES: {
       GET_ALL: "/api/coursemeta/",
       CREATE: "/api/coursemeta/",
       UPDATE: (id) => `/api/coursemeta/${id}/`,
       DELETE: (id) => `/api/coursemeta/${id}/`,
     },
-  
+    META_TAG_BLOGES:{
+      GET_ALL: "/api/blogmeta/",
+      CREATE: "/api/blogmeta/",
+      UPDATE: (id) => `/api/blogmeta/${id}/`,
+      DELETE: (id) => `/api/blogmeta/${id}/`,
+    }
 
 };
   
