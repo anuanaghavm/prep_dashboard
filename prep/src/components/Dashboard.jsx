@@ -39,7 +39,7 @@ const Dashboard = () => {
     <Container
       fluid
       className="p-4"
-      style={{ backgroundColor: "#f8f9fa", minHeight: "100vh" }}
+      // style={{ backgroundColor: "#fa", minHeight: "100vh" }}
     >
       <h2
         className="text-center mb-4"
@@ -52,7 +52,7 @@ const Dashboard = () => {
         <Col md={4}>
           <Card className="p-4" style={{backgroundColor :"#FF6B45"}}>
             <h6>Total Followers</h6>
-            <h2>42,500,241</h2>
+            <h2>42,500,24</h2>
           </Card>
           <Card className="mt-3" style={{backgroundColor :"#b5adab"}}>
             <div className="p-4  d-flex align-items-center justify-content-between mx-4">
@@ -89,7 +89,7 @@ const Dashboard = () => {
         <Col md={4}>
           <Card className="p-4" style={{backgroundColor :"#FF6B45"}}>
             <h6>Total Watch Hours</h6>
-            <h2>142B</h2>
+            <h2>14M</h2>
           </Card>
           <Card className="mt-3" style={{backgroundColor :"#b5adab"}}>
             <div className="p-4  d-flex align-items-center justify-content-between mx-4" >
