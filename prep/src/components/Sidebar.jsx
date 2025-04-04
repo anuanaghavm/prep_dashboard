@@ -88,7 +88,7 @@ const Sidebar = () => {
               <i className="bi bi-newspaper" style={{ fontSize: "18px" }}></i>
               <span>Blogs</span>
             </div>
-            <span>{isBlogOpen ? "▲" : "▼"}</span>
+            <span>{isBlogOpen ? "▼" : "▲"}</span>
           </div>
           {isBlogOpen && (
             <ul className="list-unstyled ms-3">
@@ -123,7 +123,7 @@ const Sidebar = () => {
               <i className="bi bi-bookmark" style={{ fontSize: "18px" }}></i>
               <span> all Course</span>
             </div>
-            <span>{isPreferredProgramsOpen ? "▲" : "▼"}</span>
+            <span>{isPreferredProgramsOpen ? "▼" : "▲"}</span>
           </div>
           {isPreferredProgramsOpen && (
             <ul className="list-unstyled ms-3">
@@ -170,7 +170,7 @@ const Sidebar = () => {
               <i className="bi bi-bar-chart"></i>
               <span>SEO Pages</span>
             </div>
-            <span>{isSeoOpen ? "▲" : "▼"}</span>
+            <span>{isSeoOpen ? "▼" : "▲"}</span>
           </div>
           {isSeoOpen && (
             <ul className="list-unstyled ms-3">
