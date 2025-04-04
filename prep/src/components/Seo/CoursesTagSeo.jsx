@@ -234,6 +234,7 @@ const  CoursesTagSeo= () => {
               "og_title",
               "twitter_card",
               "twitter_title",
+              "image_filename", 
             ].map((field) => (
               <Form.Group className="mb-2" key={field}>
                 <Form.Label>{field.replace("_", " ")}</Form.Label>
@@ -245,7 +246,7 @@ const  CoursesTagSeo= () => {
               </Form.Group>
             ))}
 
-            {["image_filename", "og_image", "twitter_image"].map((field) => (
+            {["og_image", "twitter_image"].map((field) => (
               <Form.Group className="mb-2" key={field}>
                 <Form.Label>{field.replace("_", " ")}</Form.Label>
                 <Form.Control
