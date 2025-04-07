@@ -79,6 +79,17 @@ const Sidebar = () => {
         </li>
 
         <li className="nav-item">
+          <a
+            className="nav-link text-white d-flex align-items-center gap-2"
+            style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
+            onClick={() => navigate("/question")}
+          >
+            <i className="bi bi-speedometer2" style={{ fontSize: "18px" }}></i>
+            <span>Responses</span>
+          </a>
+        </li>
+
+        <li className="nav-item">
           <div
             className="d-flex align-items-center justify-content-between text-white"
             style={{ cursor: "pointer", padding: "10px" }}

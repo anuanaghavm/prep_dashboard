@@ -13,6 +13,7 @@ import CoursesTagSeo from "./Seo/CoursesTagSeo";
 import MetaTagsBlogForm from "./Seo/MetaTagsBlogForm";
 import MetaTagsAboutUs from "./Seo/MetaTagsAboutUs";
 import MetaTagsHome from "./Seo/MetaTagsHome";
+import QuestionForm from "./question/QuestionForm";
 
 const routes = [
   {
@@ -113,6 +114,15 @@ const routes = [
     element: (
       <Staticlayout>
         <MetaTagsHome />
+      </Staticlayout>
+    ),
+  },
+
+  {
+    path: "/question",
+    element: (
+      <Staticlayout>
+        <QuestionForm />
       </Staticlayout>
     )
   }

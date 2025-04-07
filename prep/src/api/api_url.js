@@ -67,7 +67,23 @@ const API_URL = {
       CREATE: "/api/homemeta/",
       UPDATE: (id) => `/api/homemeta/${id}/`,
       DELETE: (id) => `/api/homemeta/${id}/`,
-    }
+    },
+    QUESTION: {
+      GET_ALL: "/api/questions/",
+      CREATE: "/api/create-question/",
+      UPDATE: (id) => `/api/question/${id}/`,
+      DELETE: (id) => `/api/question/${id}/`,
+    },
+    OPTIONS : {
+      // GET_ALL: "/api/questions/",
+      CREATE: "/api/create-option/",
+      UPDATE: (id) => `/api/option/${id}/`,
+      DELETE: (id) => `/api/option/${id}/`,
+    },
+    RESPONSES: {
+      GET_ALL: "/api/user-responses/",
+      CREATE: "/api/submit-response/",
+      }
 };
   
 export default API_URL;
