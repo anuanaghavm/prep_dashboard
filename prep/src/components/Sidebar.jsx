@@ -11,10 +11,12 @@ const Sidebar = () => {
   const location = useLocation();
 
   const [isBlogOpen, setIsBlogOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(false);
   const [isPreferredProgramsOpen, setIsPreferredProgramsOpen] = useState(false);
   const [isSeoOpen, setIsSeoOpen] = useState(false);
 
   const handleClick = () => setIsBlogOpen(!isBlogOpen);
+  const handleFormClick = () => setIsFormOpen(!isFormOpen);
   const handlePreferredProgramsClick = () =>
     setIsPreferredProgramsOpen(!isPreferredProgramsOpen);
 
@@ -79,14 +81,37 @@ const Sidebar = () => {
         </li>
 
         <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center gap-2"
-            style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
-            onClick={() => navigate("/question")}
+          <div
+            className="d-flex align-items-center justify-content-between text-white"
+            style={{ cursor: "pointer", padding: "10px" }}
+            onClick={handleFormClick}
           >
-            <i className="bi bi-speedometer2" style={{ fontSize: "18px" }}></i>
-            <span>Responses</span>
-          </a>
+            <div className="d-flex align-items-center gap-2">
+              <i className="bi bi-newspaper" style={{ fontSize: "18px" }}></i>
+              <span>Forms</span>
+            </div>
+            <span>{isFormOpen ? "▼" : "▲"}</span>
+          </div>
+          {isFormOpen && (
+            <ul className="list-unstyled ms-3">
+              <li
+                className="text-light d-flex align-items-center gap-2"
+                style={{ cursor: "pointer", padding: "5px 10px" }}
+                onClick={() => navigate("/question")}
+              >
+                <i className="bi bi-folder"></i>
+                <span>Question</span>
+              </li>
+              <li
+                className="text-light d-flex align-items-center gap-2"
+                style={{ cursor: "pointer", padding: "5px 10px" }}
+                onClick={() => navigate("/blogcards")}
+              >
+                <i className="bi bi-card-list"></i>
+                <span>Responses</span>
+              </li>
+            </ul>
+          )}
         </li>
 
         <li className="nav-item">

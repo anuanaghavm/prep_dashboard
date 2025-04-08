@@ -4,7 +4,7 @@ import API_URL from "../../api/api_url";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
-const QuestionAdmin = () => {
+const QuestionForm = () => {
   const [responses, setResponses] = useState([]);
   const [questionText, setQuestionText] = useState("");
   const [options, setOptions] = useState([{ text: "" }]);
@@ -101,7 +101,7 @@ const QuestionAdmin = () => {
 
       <div className="card p-3 mb-4">
         {responses.length === 0 ? (
-          <p>No responses yet.</p>
+          <p>No questions yet.</p>
         ) : (
           <div className="table-responsive">
             <table className="table table-bordered table-hover">
@@ -219,4 +219,4 @@ const QuestionAdmin = () => {
   );
 };
 
-export default QuestionAdmin;
+export default QuestionForm;

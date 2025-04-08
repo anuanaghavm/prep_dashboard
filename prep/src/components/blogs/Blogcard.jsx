@@ -11,6 +11,11 @@ const BlogCard = () => {
   const [image, setImage] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [alt_image_text, setalt_image_text] = useState("");
+  const [alt_image_caption,setalt_image_caption] = useState("");
+  const [alt_image_title, setalt_image_title] = useState("");
+  const [alt_image_description, setalt_image_description] = useState("");
+  const [slug, setslug] = useState("");
   const [category, setCategory] = useState("");
   const [editBlogId, setEditBlogId] = useState(null);
 
@@ -49,6 +54,11 @@ const BlogCard = () => {
     }
     formData.append("title", title);
     formData.append("description", description);
+    formData.append("alt_image_text", alt_image_text);
+    formData.append("alt_image_title", alt_image_title);
+    formData.append("alt_image_caption", alt_image_caption);
+    formData.append("alt_image_description", alt_image_description);
+    formData.append("slug", slug);
     formData.append("category", category);
 
     try {
@@ -73,6 +83,10 @@ const BlogCard = () => {
     setEditBlogId(blog.id);
     setTitle(blog.title);
     setDescription(blog.description);
+    setalt_image_caption(blog.alt_image_caption);
+    setalt_image_text(blog.alt_image_text);
+    setalt_image_description(blog.setalt_image_description);
+    setalt_image_title(blog.setalt_image_title);
     setCategory(blog.category);
     setShowModal(true);
   };
@@ -93,6 +107,11 @@ const BlogCard = () => {
     setImage(null);
     setTitle("");
     setDescription("");
+    setalt_image_text("");
+    setalt_image_title("");
+    setalt_image_caption("");
+    setalt_image_description("");
+    setslug("");
     setCategory("");
   };
 
@@ -116,6 +135,11 @@ const BlogCard = () => {
                 <div className="card-body d-flex flex-column">
                   <h5 className="card-title">{blog.title}</h5>
                   <p className="card-text text-truncate">{blog.description}</p>
+                  <h5 className="card-text">{blog.alt_image_text}</h5>
+                  <h5 className="card-text">{blog.alt_image_title}</h5>
+                  <h5 className="card-text">{blog.alt_image_caption}</h5>
+                  <h5 className="card-text">{blog.alt_image_description}</h5>
+                  <h5 className="card-title">{blog.slug}</h5>
                   <div className="d-flex justify-content-end">
                     <button className="btn btn-info me-2" onClick={() => handleEdit(blog)}>Edit</button>
                     <button className="btn btn-danger" onClick={() => handleDelete(blog.id)}>Delete</button>
@@ -147,6 +171,26 @@ const BlogCard = () => {
             <div className="form-group">
               <label>Description</label>
               <textarea className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label>alt_image_text</label>
+              <textarea className="form-control" value={alt_image_text} onChange={(e) => setalt_image_text(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label>alt_img_title</label>
+              <textarea className="form-control" value={alt_image_title} onChange={(e) => setalt_image_title(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label>alt_img_caption</label>
+              <textarea className="form-control" value={alt_image_caption} onChange={(e) => setalt_image_caption(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label>alt_img_description</label>
+              <textarea className="form-control" value={alt_image_description} onChange={(e) => setalt_image_description(e.target.value)} />
+            </div>
+            <div className="form-group">
+              <label>slug</label>
+              <textarea className="form-control" value={slug} onChange={(e) => setslug(e.target.value)} />
             </div>
             <div className="form-group">
               <label>Category</label>

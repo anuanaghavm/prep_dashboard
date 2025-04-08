@@ -113,7 +113,6 @@ const MetaTagsBlogForm = () => {
         <thead>
           <tr>
             <th>Title</th>
-            <th>Slug</th>
             <th>Canonical URL</th>
             <th>Meta Description</th>
             <th>H1 Tag</th>
@@ -125,7 +124,6 @@ const MetaTagsBlogForm = () => {
           {metaTags.map((item) => (
             <tr key={item.id}>
               <td>{item.title}</td>
-              <td>{item.slug}</td>
               <td>{item.canonical_url}</td>
               <td>{item.meta_description}</td>
               <td>{item.h1_tag}</td>
@@ -192,7 +190,7 @@ const MetaTagsBlogForm = () => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            {["title", "slug", "canonical_url", "h1_tag", "word_count"].map(
+            {["title", "canonical_url", "h1_tag", "word_count"].map(
               (field) => (
                 <Form.Group className="mb-2" key={field}>
                   <Form.Label>{field.replace("_", " ")}</Form.Label>
@@ -231,11 +229,9 @@ const MetaTagsBlogForm = () => {
               "external_links",
               "schema_type",
               "json_ld_schema",
-              "image_alt_text",
               "og_title",
               "twitter_card",
               "twitter_title",
-              "image_filename", 
             ].map((field) => (
               <Form.Group className="mb-2" key={field}>
                 <Form.Label>{field.replace("_", " ")}</Form.Label>
