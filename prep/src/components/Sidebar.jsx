@@ -5,7 +5,6 @@ import logoSrc from "/src/assets/Headerlogo.webp";
 import { IoMdContact } from "react-icons/io";
 import { FaDiscourse } from "react-icons/fa";
 
-
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -105,7 +104,7 @@ const Sidebar = () => {
               <li
                 className="text-light d-flex align-items-center gap-2"
                 style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/blogcards")}
+                onClick={() => navigate("/response")}
               >
                 <i className="bi bi-card-list"></i>
                 <span>Responses</span>
@@ -154,7 +153,6 @@ const Sidebar = () => {
             style={{ cursor: "pointer", padding: "10px" }}
             onClick={handlePreferredProgramsClick}
           >
-
             <div className="d-flex align-items-center gap-2">
               <i className="bi bi-bookmark" style={{ fontSize: "18px" }}></i>
               <span> all Course</span>
@@ -253,8 +251,6 @@ const Sidebar = () => {
               </li>
             </ul>
           )}
-
-          
         </li>
       </ul>
     </div>

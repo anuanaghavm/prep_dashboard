@@ -8,3 +8,6 @@ const allaxios = axios.create ({
 });
 
 export default allaxios
+
+//https://api-web.prepacademy.in
+//http://127.0.0.1:8000
