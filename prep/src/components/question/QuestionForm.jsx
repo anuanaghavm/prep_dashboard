@@ -5,20 +5,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 const QuestionForm = () => {
-  const [responses, setResponses] = useState([]);
+  const [questions, setQuestions] = useState([]);
   const [questionText, setQuestionText] = useState("");
   const [options, setOptions] = useState([{ text: "" }]);
 
   useEffect(() => {
-    fetchResponses();
+    fetchQuestions();
   }, []);
 
-  const fetchResponses = async () => {
+  const fetchQuestions = async () => {
     try {
-      const res = await allaxios.get(API_URL.RESPONSES.GET_ALL);
-      setResponses(res.data);
+      const res = await allaxios.get(API_URL.QUESTION.GET_ALL);
+      setQuestions(res.data);
     } catch (error) {
-      console.error("Error fetching responses", error);
+      console.error("Error fetching questions", error);
     }
   };
 
@@ -53,7 +53,7 @@ const QuestionForm = () => {
       }
 
       resetForm();
-      fetchResponses();
+      fetchQuestions();
       const modal = bootstrap.Modal.getInstance(
         document.getElementById("questionModal")
       );
@@ -64,32 +64,21 @@ const QuestionForm = () => {
     }
   };
 
-  // 👇 Group responses by user (e.g. by email)
-  const groupResponsesByUser = (responses) => {
-    const grouped = {};
-
-    responses.forEach((res) => {
-      const key = res.email; // Or use res.phone_number
-      if (!grouped[key]) {
-        grouped[key] = {
-          ...res,
-          questions: [],
-        };
+  const handleDelete = async (questionId) => {
+    if (window.confirm("Are you sure you want to delete this question?")) {
+      try {
+        await allaxios.delete(API_URL.QUESTION.DELETE(questionId));
+        fetchQuestions();
+      } catch (error) {
+        console.error("Error deleting question", error);
       }
-
-      grouped[key].questions.push({
-        question: res.question_text,
-        answer: res.selected_option_text,
-      });
-    });
-
-    return Object.values(grouped);
+    }
   };
 
   return (
     <div className="container mt-4">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h4><u>Responses</u></h4>
+        <h4><u>Questions</u></h4>
         <button
           className="btn btn-success"
           data-bs-toggle="modal"
@@ -100,47 +89,38 @@ const QuestionForm = () => {
       </div>
 
       <div className="card p-3 mb-4">
-        {responses.length === 0 ? (
+        {questions.length === 0 ? (
           <p>No questions yet.</p>
         ) : (
           <div className="table-responsive">
             <table className="table table-bordered table-hover">
               <thead className="table-light">
                 <tr>
-                  <th>sl.no</th>
-                  <th>Full Name</th>
-                  <th>Email</th>
-                  <th>Phone Number</th>
-                  <th>School Name</th>
-                  <th>Location</th>
-                  <th>Class Type</th>
-                  <th>Questions</th>
-                  <th>Answers</th>
+                  <td>No.</td>
+                  <td>Question</td>
+                  <td>Options</td>
+                  <td>Actions</td>
                 </tr>
               </thead>
               <tbody>
-                {groupResponsesByUser(responses).map((user, index) => (
-                  <tr key={index}>
+                {questions.map((question, index) => (
+                  <tr key={question.id}>
                     <td>{index + 1}</td>
-                    <td>{user.full_name}</td>
-                    <td>{user.email}</td>
-                    <td>{user.phone_number}</td>
-                    <td>{user.school_name}</td>
-                    <td>{user.location}</td>
-                    <td>{user.class_type}</td>
+                    <td><strong>{question.text}</strong></td>
                     <td>
-                      <ul className="mb-0 ps-3">
-                        {user.questions.map((q, i) => (
-                          <li key={i}><strong>{q.question}</strong></li>
+                      <ul className="list-unstyled mb-0">
+                        {question.options?.map((option, i) => (
+                          <li key={i}><strong>• {option.text}</strong></li>
                         ))}
                       </ul>
                     </td>
                     <td>
-                      <ul className="mb-0 ps-3">
-                        {user.questions.map((q, i) => (
-                          <li key={i}>{q.answer}</li>
-                        ))}
-                      </ul>
+                      <button
+                        className="btn btn-sm btn-danger"
+                        onClick={() => handleDelete(question.id)}
+                      >
+                        Delete
+                      </button>
                     </td>
                   </tr>
                 ))}
