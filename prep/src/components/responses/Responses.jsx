@@ -136,14 +136,18 @@ const Responses = () => {
     {
       name: 'Q & A',
       selector: row => (
-        <ul className="list-unstyled mb-0">
+        <div className="py-2">
           {row.responses.map((r, i) => (
-            <li key={i} className="mb-1">
-              <strong>Q:</strong> {r.question}<br/>
-              <strong>A:</strong> {r.answer}
-            </li>
+            <div key={i} className={i !== row.responses.length - 1 ? 'mb-3 pb-3 border-bottom' : ''}>
+              <div className="mb-1">
+                <strong style={{ color: '#2c5282' }}>Q:</strong> {r.question}
+              </div>
+              <div className="ps-3">
+                <strong style={{ color: '#38a169' }}>A:</strong> {r.answer}
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
       ),
       sortable: false,
       width: '300px'
