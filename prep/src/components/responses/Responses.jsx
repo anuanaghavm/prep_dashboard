@@ -8,16 +8,47 @@ const Responses = () => {
   const [response, setResponse] = useState([]);
   const [filteredResponse, setFilteredResponse] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
-  const [filterBy, setFilterBy] = useState("course"); // course, email, name
+  const [filterBy, setFilterBy] = useState("course");
 
   const fetchResponse = async () => {
     try {
       const response = await allaxios.get(API_URL.RESPONSES.GET_ALL);
-      setResponse(response.data);
-      setFilteredResponse(response.data);
+      // Group responses by student
+      const groupedResponses = groupResponsesByStudent(response.data);
+      setResponse(groupedResponses);
+      setFilteredResponse(groupedResponses);
     } catch (error) {
       console.error(error);
     }
+  };
+
+  // Function to group responses by student
+  const groupResponsesByStudent = (responses) => {
+    const grouped = {};
+    
+    responses.forEach(res => {
+      const key = `${res.email}-${res.phone_number}`; // Unique key combining email and phone
+      
+      if (!grouped[key]) {
+        grouped[key] = {
+          id: res.id,
+          name: res.full_name,
+          email: res.email,
+          phone: res.phone_number,
+          school: res.school_name,
+          place: res.location,
+          classtype: res.class_type,
+          responses: []
+        };
+      }
+      
+      grouped[key].responses.push({
+        question: res.question_text,
+        answer: res.selected_option_text
+      });
+    });
+
+    return Object.values(grouped);
   };
 
   const handleSearch = (e) => {
@@ -33,11 +64,11 @@ const Responses = () => {
       const searchValue = value.toLowerCase();
       switch (filterBy) {
         case "course":
-          return data.course?.toLowerCase().includes(searchValue);
+          return data.school?.toLowerCase().includes(searchValue);
         case "email":
           return data.email?.toLowerCase().includes(searchValue);
         case "name":
-          return data.full_name?.toLowerCase().includes(searchValue);
+          return data.name?.toLowerCase().includes(searchValue);
         default:
           return true;
       }
@@ -67,44 +98,61 @@ const Responses = () => {
 
   const columns = [
     {
-      name: 'Id',
+      name: 'I.',
       selector: row => row.id,
       sortable: true,
+      width: '60px'
     },
     {
-      name: 'Full name',
-      selector: row => row.full_name,
+      name: 'Name',
+      selector: row => row.name,
       sortable: true,
+      width: '120px'
     },
     {
       name: 'Email',
       selector: row => row.email,
       sortable: true,
+      width: '180px'
     },
     {
-      name: 'Phone number',
-      selector: row => row.phone_number,
+      name: 'Phone',
+      selector: row => row.phone,
       sortable: true,
+      width: '130px'
     },
     {
-      name: 'School name',
-      selector: row => row.school_name,
+      name: 'School',
+      selector: row => row.school,
       sortable: true,
+      width: '120px'
     },
     {
-      name: 'Location',
-      selector: row => row.location,
+      name: 'Place',
+      selector: row => row.place,
       sortable: true,
+      width: '120px'
     },
     {
-      name: 'Selected option',
-      selector: row => row.selected_option,
-      sortable: true,
+      name: 'Q & A',
+      selector: row => (
+        <ul className="list-unstyled mb-0">
+          {row.responses.map((r, i) => (
+            <li key={i} className="mb-1">
+              <strong>Q:</strong> {r.question}<br/>
+              <strong>A:</strong> {r.answer}
+            </li>
+          ))}
+        </ul>
+      ),
+      sortable: false,
+      width: '300px'
     },
     {
-      name: 'Class type',
-      selector: row => row.class_type,
+      name: 'Class',
+      selector: row => row.classtype,
       sortable: true,
+      width: '100px'
     }
   ];
 
