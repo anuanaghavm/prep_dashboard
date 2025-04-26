@@ -94,7 +94,7 @@ const PreferredProgram = () => {
   return (
     <div className="container mt-4">
       <div className=" d-flex justify-content-between">
-        <h2 style={{ fontWeight: "bold" }}>Preferred Programs</h2>
+        <h2 style={{ fontWeight: "bold" }}><u>Preferred Programs</u></h2>
         <Button
           className=""
           variant="primary"

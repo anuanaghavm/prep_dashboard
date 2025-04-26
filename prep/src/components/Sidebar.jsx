@@ -58,7 +58,7 @@ const Sidebar = () => {
             <span>Dashboard</span>
           </a>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <a
             className="nav-link text-white d-flex align-items-center gap-2"
             style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
@@ -77,7 +77,7 @@ const Sidebar = () => {
             <i className="bi bi-box-seam" style={{ fontSize: "18px" }}></i>
             <span>About us</span>
           </a>
-        </li>
+        </li> */}
 
         <li className="nav-item">
           <div

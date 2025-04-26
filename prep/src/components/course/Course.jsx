@@ -99,7 +99,7 @@ const FormSubmission = () => {
   return (
     <div className="container mt-4">
       <div className=" d-flex justify-content-between">
-          <h2 className="">Form Submissions</h2>
+          <h3 className=""><b><u>Form Submissions</u></b></h3>
           <Button className="" variant="primary" onClick={() => setShowModal(true)}>
             Add New
           </Button>

@@ -15,6 +15,7 @@ import MetaTagsAboutUs from "./Seo/MetaTagsAboutUs";
 import MetaTagsHome from "./Seo/MetaTagsHome";
 import QuestionForm from "./question/QuestionForm";
 import Responses from "./responses/Responses";
+import ResponseForm from "./responses/ResponseForm";
 
 const routes = [
   {
@@ -95,13 +96,12 @@ const routes = [
   },
   {
     path: "/aboutusseo",
-    element : (
+    element: (
       <Staticlayout>
         <MetaTagsAboutUs />
       </Staticlayout>
     ),
   },
-
   {
     path: "/CoursesTagSeo",
     element: (
@@ -118,7 +118,6 @@ const routes = [
       </Staticlayout>
     ),
   },
-
   {
     path: "/question",
     element: (
@@ -127,7 +126,6 @@ const routes = [
       </Staticlayout>
     )
   },
-
   {
     path: "/response",
     element: (
@@ -135,8 +133,15 @@ const routes = [
         <Responses />
       </Staticlayout>
     )
+  },
+  {
+    path: "/submit-response",
+    element: (
+      <Staticlayout>
+        <ResponseForm />
+      </Staticlayout>
+    )
   }
-
 ];
 
 export default routes;
