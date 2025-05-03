@@ -12,7 +12,7 @@ body {
     padding: 0; /* Remove padding */
     background: transparent; /* Remove box */
     box-shadow: none; /* Remove shadow */
-    border-radius: 0; /* Remove border */
+    border-radius: 0; /* Remove border */;
   }
   
   h4 {
@@ -72,3 +72,90 @@ body {
     cursor: pointer;
   }
   
+  .note-editor {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+  }
+  
+  .note-editor .note-toolbar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+  }
+  
+  .note-editor .note-editing-area {
+    padding: 10px;
+  }
+  
+  .note-editor .note-editable {
+    min-height: 200px;
+    padding: 10px;
+  }
+  
+  .note-editor .note-statusbar {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ccc;
+  }
+  
+  .note-editor .note-btn {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin: 2px;
+    padding: 5px 10px;
+  }
+  
+  .note-editor .note-btn:hover {
+    background-color: #e9ecef;
+  }
+  
+  .note-editor .note-btn.active {
+    background-color: #e9ecef;
+  }
+  
+  /* Removed custom .card and .card-img-top styles to revert to Bootstrap defaults */
+  
+  .card-body {
+    padding: 16px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  
+  .card-text {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+  }
+  
+  .btn {
+    min-width: 70px;
+    margin-right: 8px;
+  }
+  
+  .blog-card-grid {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  
+  .blog-card {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .blog-card-img {
+    height: 200px;
+    object-fit: cover;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+  }
