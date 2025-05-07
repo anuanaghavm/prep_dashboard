@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logoSrc from "/src/assets/Headerlogo.webp";
 import { IoMdContact } from "react-icons/io";
-import { FaDiscourse } from "react-icons/fa";
+import { FaDiscourse, FaUsers } from "react-icons/fa";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -179,6 +179,19 @@ const Sidebar = () => {
               </li>
             </ul>
           )}
+        </li>
+
+        <li className="nav-item">
+          <a
+            className="nav-link text-white d-flex align-items-center gap-2"
+            style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
+            onClick={() => navigate("/users")}
+          >
+            <div className="d-flex justify-content-center align-items-center">
+              <FaUsers className="me-2 fs-4" />
+              <span>Users</span>
+            </div>
+          </a>
         </li>
 
         <li className="nav-item">

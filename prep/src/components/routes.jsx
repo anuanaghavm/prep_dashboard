@@ -16,6 +16,7 @@ import MetaTagsHome from "./Seo/MetaTagsHome";
 import QuestionForm from "./question/QuestionForm";
 import Responses from "./responses/Responses";
 import ResponseForm from "./responses/ResponseForm";
+import UserList from "./users/UserList";
 
 const routes = [
   {
@@ -141,7 +142,15 @@ const routes = [
         <ResponseForm />
       </Staticlayout>
     )
-  }
+  },
+  {
+    path: "/users",
+    element: (
+      <Staticlayout>
+        <UserList />
+      </Staticlayout>
+    ),
+  },
 ];
 
 export default routes;
