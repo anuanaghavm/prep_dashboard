@@ -83,7 +83,15 @@ const API_URL = {
     RESPONSES: {
       GET_ALL: "/api/user-responses/",
       CREATE: "/api/submit-response/",
-      }
+    },
+    PAYMENTS: {
+      GET_PAYMENTS: "/api/payments/",
+      GET_PAYMENT_HISTORY: "/api/payment-history/",
+      GET_COURSE_PAYMENTS: "/api/course-payments/",
+      GET_SETTINGS: "/api/payment-settings/",
+      UPDATE_SETTINGS: "/api/payment-settings/",
+      DELETE_COURSE_PAYMENT: (id) => `/api/course-payments/${id}/`,
+    }
 };
-  
+
 export default API_URL;

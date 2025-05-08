@@ -2,26 +2,107 @@ import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import logoSrc from "/src/assets/Headerlogo.webp";
-import { IoMdContact } from "react-icons/io";
-import { FaDiscourse, FaUsers } from "react-icons/fa";
+import { 
+  MdDashboard,
+  MdQuestionAnswer,
+  MdFolder,
+  MdArticle,
+  MdSchool,
+  MdPeople,
+  MdPayments,
+  MdFolderOpen,
+  MdDescription,
+  MdList,
+  MdBookmark,
+  MdPerson,
+  MdSettings
+} from "react-icons/md";
 
 const Sidebar = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [isBlogOpen, setIsBlogOpen] = useState(false);
-  const [isFormOpen, setIsFormOpen] = useState(false);
-  const [isPreferredProgramsOpen, setIsPreferredProgramsOpen] = useState(false);
-  const [isSeoOpen, setIsSeoOpen] = useState(false);
+  const [openMenus, setOpenMenus] = useState({
+    forms: false,
+    blogs: false,
+    courses: false,
+    allCourses: false,
+    payments: false
+  });
 
-  const handleClick = () => setIsBlogOpen(!isBlogOpen);
-  const handleFormClick = () => setIsFormOpen(!isFormOpen);
-  const handlePreferredProgramsClick = () =>
-    setIsPreferredProgramsOpen(!isPreferredProgramsOpen);
+  const toggleMenu = (menu) => {
+    setOpenMenus(prev => ({
+      ...prev,
+      [menu]: !prev[menu]
+    }));
+  };
+
+  const menuItems = [
+    {
+      title: "Dashboard",
+      icon: <MdDashboard className="fs-4" />,
+      path: "/dashboard",
+      single: true
+    },
+    {
+      title: "Forms",
+      icon: <MdDescription className="fs-4" />,
+      key: "forms",
+      subItems: [
+        { title: "Questions", icon: <MdQuestionAnswer />, path: "/question" },
+        { title: "Responses", icon: <MdArticle />, path: "/response" }
+      ]
+    },
+    {
+      title: "Blogs",
+      icon: <MdArticle className="fs-4" />,
+      key: "blogs",
+      subItems: [
+        { title: "Blog Categories", icon: <MdFolder />, path: "/blogcategories" },
+        { title: "Blog Posts", icon: <MdDescription />, path: "/blogcards" }
+      ]
+    },
+    {
+      title: "Course",
+      icon: <MdSchool className="fs-4" />,
+      key: "courses",
+      subItems: [
+        { title: "Course Categories", icon: <MdFolderOpen />, path: "/courses" },
+        { title: "Subject Categories", icon: <MdList />, path: "/subjects" },
+        { title: "Section Categories", icon: <MdBookmark />, path: "/sections" },
+        { title: "User Forms", icon: <MdPerson />, path: "/user-forms" }
+      ]
+    },
+    {
+      title: "All Courses",
+      icon: <MdSchool className="fs-4" />,
+      key: "allCourses",
+      subItems: [
+        { title: "Preferred Programs", icon: <MdBookmark />, path: "/preferred" },
+        { title: "Course List", icon: <MdList />, path: "/course" }
+      ]
+    },
+    {
+      title: "Users",
+      icon: <MdPeople className="fs-4" />,
+      path: "/users",
+      single: true
+    },
+    {
+      title: "Payments",
+      icon: <MdPayments className="fs-4" />,
+      key: "payments",
+      subItems: [
+        { title: "Payment List", icon: <MdList />, path: "/payments" },
+        { title: "Remove Course Payment", icon: <MdPayments />, path: "/remove-course-payment" },
+        { title: "Payment Settings", icon: <MdSettings />, path: "/payment-settings" }
+      ]
+    }
+  ];
 
   return (
     <div
-      className="d-flex flex-column p-3 shadow-sm"
+      className="d-flex flex-column shadow-sm"
       style={{
         width: "250px",
         backgroundColor: "#FF6B45",
@@ -29,14 +110,18 @@ const Sidebar = () => {
         position: "fixed",
         top: 0,
         left: 0,
+        overflowY: "auto",
+        overflowX: "hidden",
+        zIndex: 1000,
+        transition: "width 0.3s ease"
       }}
     >
       <div
-        className="text-center mb-3"
+        className="text-center mb-4 mt-3 mx-2"
         style={{
           backgroundColor: "white",
-          padding: "10px",
-          borderRadius: "5px",
+          padding: "12px",
+          borderRadius: "10px",
         }}
       >
         <img
@@ -47,224 +132,77 @@ const Sidebar = () => {
         />
       </div>
 
-      <ul className="nav flex-column">
-        <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center gap-2"
-            style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
-            onClick={() => navigate("/dashboard")}
-          >
-            <i className="bi bi-house-door" style={{ fontSize: "18px" }}></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        {/* <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center gap-2"
-            style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
-            onClick={() => navigate("/Home")}
-          >
-            <i className="bi bi-speedometer2" style={{ fontSize: "18px" }}></i>
-            <span>Home</span>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center gap-2"
-            style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
-            onClick={() => navigate("/products")}
-          >
-            <i className="bi bi-box-seam" style={{ fontSize: "18px" }}></i>
-            <span>About us</span>
-          </a>
-        </li> */}
-
-        <li className="nav-item">
-          <div
-            className="d-flex align-items-center justify-content-between text-white"
-            style={{ cursor: "pointer", padding: "10px" }}
-            onClick={handleFormClick}
-          >
-            <div className="d-flex align-items-center gap-2">
-              <i className="bi bi-newspaper" style={{ fontSize: "18px" }}></i>
-              <span>Forms</span>
-            </div>
-            <span>{isFormOpen ? "▼" : "▲"}</span>
-          </div>
-          {isFormOpen && (
-            <ul className="list-unstyled ms-3">
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/question")}
+      <ul className="nav flex-column px-3">
+        {menuItems.map((item, index) => (
+          <li key={index} className="nav-item mb-2">
+            {item.single ? (
+              <a
+                className={`nav-link text-white d-flex align-items-center gap-3 rounded ${
+                  location.pathname === item.path ? "bg-white bg-opacity-10" : ""
+                }`}
+                style={{ 
+                  fontSize: "15px", 
+                  padding: "12px 15px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease"
+                }}
+                onClick={() => navigate(item.path)}
               >
-                <i className="bi bi-folder"></i>
-                <span>Question</span>
-              </li>
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/response")}
-              >
-                <i className="bi bi-card-list"></i>
-                <span>Responses</span>
-              </li>
-            </ul>
-          )}
-        </li>
-
-        <li className="nav-item">
-          <div
-            className="d-flex align-items-center justify-content-between text-white"
-            style={{ cursor: "pointer", padding: "10px" }}
-            onClick={handleClick}
-          >
-            <div className="d-flex align-items-center gap-2">
-              <i className="bi bi-newspaper" style={{ fontSize: "18px" }}></i>
-              <span>Blogs</span>
-            </div>
-            <span>{isBlogOpen ? "▼" : "▲"}</span>
-          </div>
-          {isBlogOpen && (
-            <ul className="list-unstyled ms-3">
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/blogcategories")}
-              >
-                <i className="bi bi-folder"></i>
-                <span>Blog Categories</span>
-              </li>
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/blogcards")}
-              >
-                <i className="bi bi-card-list"></i>
-                <span>Blog Cards</span>
-              </li>
-            </ul>
-          )}
-        </li>
-
-        <li className="nav-item">
-          <div
-            className="d-flex align-items-center justify-content-between text-white"
-            style={{ cursor: "pointer", padding: "10px" }}
-            onClick={handlePreferredProgramsClick}
-          >
-            <div className="d-flex align-items-center gap-2">
-              <i className="bi bi-bookmark" style={{ fontSize: "18px" }}></i>
-              <span> all Course</span>
-            </div>
-            <span>{isPreferredProgramsOpen ? "▼" : "▲"}</span>
-          </div>
-          {isPreferredProgramsOpen && (
-            <ul className="list-unstyled ms-3">
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/preferred")}
-              >
-                <i className="bi bi-journal-bookmark"></i>
-                <span>Preferred Programs</span>
-              </li>
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/course")}
-              >
-                <i className="bi bi-plus-circle"></i>
-                <span>All Courses</span>
-              </li>
-            </ul>
-          )}
-        </li>
-
-        <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center gap-2"
-            style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
-            onClick={() => navigate("/users")}
-          >
-            <div className="d-flex justify-content-center align-items-center">
-              <FaUsers className="me-2 fs-4" />
-              <span>Users</span>
-            </div>
-          </a>
-        </li>
-
-        <li className="nav-item">
-          <a
-            className="nav-link text-white d-flex align-items-center gap-2"
-            style={{ fontSize: "16px", padding: "10px", cursor: "pointer" }}
-            onClick={() => navigate("/contactus")}
-          >
-            <div className="d-flex justify-content-center align-items-center">
-              <IoMdContact className="me-2 fs-4" />
-              <span>Contact</span>
-            </div>
-          </a>
-        </li>
-
-        <li className="nav-item">
-          <div
-            className="d-flex align-items-center justify-content-between text-white"
-            style={{ cursor: "pointer", padding: "10px" }}
-            onClick={() => setIsSeoOpen(!isSeoOpen)}
-          >
-            <div className="d-flex align-items-center gap-2">
-              <i className="bi bi-bar-chart"></i>
-              <span>SEO Pages</span>
-            </div>
-            <span>{isSeoOpen ? "▼" : "▲"}</span>
-          </div>
-          {isSeoOpen && (
-            <ul className="list-unstyled ms-3">
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/homeseo")}
-              >
-                <i className="bi bi-house"></i>
-                <span>Home SEO</span>
-              </li>
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/aboutusseo")}
-              >
-                <i className="bi bi-info-circle"></i>
-                <span>AboutUs SEO</span>
-              </li>
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/CoursesTagSeo")}
-              >
-                <i className="bi bi-journal-bookmark"></i>
-                <span>Courses SEO</span>
-              </li>
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/MetaTagsBlogForm")}
-              >
-                <i className="bi bi-newspaper"></i>
-                <span>Blogs SEO</span>
-              </li>
-              {/* ✅ New ContactUs SEO page added here */}
-              <li
-                className="text-light d-flex align-items-center gap-2"
-                style={{ cursor: "pointer", padding: "5px 10px" }}
-                onClick={() => navigate("/contactusseo")}
-              >
-                <i className="bi bi-telephone-inbound"></i>
-                <span>ContactUs SEO</span>
-              </li>
-            </ul>
-          )}
-        </li>
+                {item.icon}
+                <span>{item.title}</span>
+              </a>
+            ) : (
+              <>
+                <div
+                  className={`d-flex align-items-center justify-content-between text-white rounded ${
+                    openMenus[item.key] ? "bg-white bg-opacity-10" : ""
+                  }`}
+                  style={{ 
+                    cursor: "pointer", 
+                    padding: "12px 15px",
+                    transition: "all 0.3s ease"
+                  }}
+                  onClick={() => toggleMenu(item.key)}
+                >
+                  <div className="d-flex align-items-center gap-3">
+                    {item.icon}
+                    <span>{item.title}</span>
+                  </div>
+                  <span style={{ 
+                    transition: "transform 0.3s ease",
+                    transform: openMenus[item.key] ? "rotate(180deg)" : "rotate(0deg)"
+                  }}>
+                    ▼
+                  </span>
+                </div>
+                {openMenus[item.key] && (
+                  <ul className="list-unstyled ms-4 mt-2">
+                    {item.subItems.map((subItem, subIndex) => (
+                      <li key={subIndex}>
+                        <a
+                          className={`text-white d-flex align-items-center gap-3 rounded ${
+                            location.pathname === subItem.path ? "bg-white bg-opacity-10" : ""
+                          }`}
+                          style={{ 
+                            cursor: "pointer", 
+                            padding: "10px 15px",
+                            fontSize: "14px",
+                            textDecoration: "none",
+                            transition: "all 0.3s ease"
+                          }}
+                          onClick={() => navigate(subItem.path)}
+                        >
+                          {subItem.icon}
+                          <span>{subItem.title}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </>
+            )}
+          </li>
+        ))}
       </ul>
     </div>
   );

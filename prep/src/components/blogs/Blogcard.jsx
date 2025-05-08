@@ -171,25 +171,80 @@ const BlogCard = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <div className="d-flex justify-content-between align-items-center ms-4">
-        <h4><u>Blog Posts</u></h4>
-        <button className="btn btn-primary" onClick={handleNew}>Add New</button>
+    <div className="container-fluid p-4">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2>
+          <b><u>Blog Posts</u></b>
+        </h2>
+        <button 
+          className="btn" 
+          onClick={handleNew}
+          style={{backgroundColor: "#FF6B45", color: "white", border: "none"}}
+        >
+          Add New Blog
+        </button>
       </div>
-      <div className="blog-card-grid row row-cols-1 row-cols-md-2 mt-3">
+
+      <div className="row g-4">
         {blogs.length > 0 ? (
-          blogs.map((blog) => (
-            <div className="col d-flex justify-content-center" key={blog.id}>
-              <div className="card blog-card shadow-lg" >
-                <img src={blog.image} className="card-img-top blog-card-img" alt="Blog" style={{height: "200px", objectFit: "cover"}} />
-                <div className="card-body d-flex flex-column" style={{overflowY: "auto"}}>
-                  <h5 className="card-title">{blog.title}</h5>
-                  <div className="card-text" dangerouslySetInnerHTML={{ __html: truncateText(blog.description, 200) }} />
-                  <div className="d-flex justify-content-between mt-auto">
-                    <button className="btn btn-primary" onClick={() => handleViewFullContent(blog)}>Read More</button>
+          blogs.map((blog, index) => (
+            <div 
+              className={`col-12 ${index < 3 ? 'col-md-4' : 'col-md-6'}`} 
+              key={blog.id}
+            >
+              <div className="card h-100 shadow-lg hover-effect">
+                <div className="position-relative">
+                  <img 
+                    src={blog.image} 
+                    className="card-img-top" 
+                    alt={blog.alt_image_text || "Blog"} 
+                    style={{
+                      height: "250px",
+                      objectFit: "cover"
+                    }}
+                  />
+                  <div 
+                    className="position-absolute bottom-0 start-0 w-100 p-3"
+                    style={{
+                      background: "linear-gradient(transparent, rgba(0,0,0,0.8))",
+                      color: "white"
+                    }}
+                  >
+                    <h5 className="card-title mb-0">{blog.title}</h5>
+                  </div>
+                </div>
+                <div className="card-body d-flex flex-column">
+                  <div 
+                    className="card-text flex-grow-1 mb-3" 
+                    style={{
+                      maxHeight: "100px",
+                      overflow: "hidden"
+                    }}
+                    dangerouslySetInnerHTML={{ 
+                      __html: truncateText(blog.description, 150) 
+                    }}
+                  />
+                  <div className="d-flex justify-content-between align-items-center mt-auto">
+                    <button 
+                      className="btn"
+                      onClick={() => handleViewFullContent(blog)}
+                      style={{backgroundColor: "#FF6B45", color: "white", border: "none"}}
+                    >
+                      Read More
+                    </button>
                     <div>
-                      <button className="btn btn-info me-2" onClick={() => handleEdit(blog)}>Edit</button>
-                      <button className="btn btn-danger" onClick={() => handleDelete(blog.id)}>Delete</button>
+                      <button 
+                        className="btn btn-outline-primary me-2"
+                        onClick={() => handleEdit(blog)}
+                      >
+                        Edit
+                      </button>
+                      <button 
+                        className="btn btn-outline-danger"
+                        onClick={() => handleDelete(blog.id)}
+                      >
+                        Delete
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -197,7 +252,11 @@ const BlogCard = () => {
             </div>
           ))
         ) : (
-          <p className="text-center mt-3">No blogs available</p>
+          <div className="col-12">
+            <div className="alert alert-info text-center">
+              No blogs available. Click "Add New Blog" to create one.
+            </div>
+          </div>
         )}
       </div>
 
@@ -209,20 +268,50 @@ const BlogCard = () => {
         <Modal.Body>
           {selectedBlog && (
             <>
-              <img src={selectedBlog.image} className="img-fluid mb-3" alt="Blog" style={{width: "100%", height: "300px", objectFit: "cover"}} />
-              <div dangerouslySetInnerHTML={{ __html: selectedBlog.description }} />
-              <div className="mt-3">
-                <h5>{selectedBlog.alt_image_text}</h5>
-                <h5>{selectedBlog.alt_image_title}</h5>
-                <h5>{selectedBlog.alt_image_caption}</h5>
-                <h5>{selectedBlog.alt_image_description}</h5>
-                <h5>{selectedBlog.slug}</h5>
-              </div>
+              <img 
+                src={selectedBlog.image} 
+                className="img-fluid rounded mb-4" 
+                alt={selectedBlog.alt_image_text || "Blog"} 
+                style={{
+                  width: "100%",
+                  height: "400px",
+                  objectFit: "cover"
+                }}
+              />
+              <div 
+                className="blog-content"
+                dangerouslySetInnerHTML={{ __html: selectedBlog.description }}
+              />
+              {(selectedBlog.alt_image_text || selectedBlog.alt_image_title || 
+                selectedBlog.alt_image_caption || selectedBlog.alt_image_description || 
+                selectedBlog.slug) && (
+                <div className="mt-4 p-3 bg-light rounded">
+                  <h6 className="mb-3">Additional Information</h6>
+                  {selectedBlog.alt_image_text && (
+                    <p className="mb-2"><strong>Image Text:</strong> {selectedBlog.alt_image_text}</p>
+                  )}
+                  {selectedBlog.alt_image_title && (
+                    <p className="mb-2"><strong>Image Title:</strong> {selectedBlog.alt_image_title}</p>
+                  )}
+                  {selectedBlog.alt_image_caption && (
+                    <p className="mb-2"><strong>Image Caption:</strong> {selectedBlog.alt_image_caption}</p>
+                  )}
+                  {selectedBlog.alt_image_description && (
+                    <p className="mb-2"><strong>Image Description:</strong> {selectedBlog.alt_image_description}</p>
+                  )}
+                  {selectedBlog.slug && (
+                    <p className="mb-0"><strong>Slug:</strong> {selectedBlog.slug}</p>
+                  )}
+                </div>
+              )}
             </>
           )}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowFullContentModal(false)}>
+          <Button 
+            variant="secondary" 
+            onClick={() => setShowFullContentModal(false)}
+          >
             Close
           </Button>
         </Modal.Footer>

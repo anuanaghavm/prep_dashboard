@@ -1,0 +1,52 @@
+.table-responsive {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    margin: 0 15px;
+    max-width: calc(100% - 30px);
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.table td, .table th {
+    vertical-align: middle;
+    padding: 12px 15px;
+}
+
+.badge {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Add minimum width for Order ID column */
+.table td:nth-child(3) {
+    min-width: 200px;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Improve table responsiveness */
+.table {
+    width: 100%;
+    min-width: 800px; /* Ensures minimum width for better readability */
+}
+
+/* Improve table header visibility */
+.table thead th {
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    border-bottom: 2px solid #dee2e6;
+} 
