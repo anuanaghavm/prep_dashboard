@@ -1,16 +1,16 @@
 .table-responsive {
     background: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0;
+    box-shadow: none;
     overflow-x: auto;
-    margin: 0 15px;
-    max-width: calc(100% - 30px);
+    margin: 0;
+    max-width: 100%;
 }
 
 .table th {
     background-color: #f8f9fa;
     font-weight: 600;
+    white-space: nowrap;
 }
 
 .table td, .table th {
@@ -18,28 +18,33 @@
     padding: 12px 15px;
 }
 
+/* Style for the payment status badge */
 .badge {
     padding: 8px 12px;
     font-size: 0.85rem;
+    text-transform: capitalize;
 }
 
+/* Stripe styling */
 .table-striped tbody tr:nth-of-type(odd) {
     background-color: rgba(0, 0, 0, 0.02);
 }
 
 /* Add minimum width for Order ID column */
-.table td:nth-child(3) {
+.table td:nth-child(4) {
     min-width: 200px;
-    max-width: 300px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+}
+
+/* Text truncation for long IDs */
+.text-truncate {
+    max-width: 200px;
+    display: inline-block;
 }
 
 /* Improve table responsiveness */
 .table {
     width: 100%;
-    min-width: 800px; /* Ensures minimum width for better readability */
+    min-width: 1000px; /* Adjusted for the new columns */
 }
 
 /* Improve table header visibility */
@@ -49,4 +54,52 @@
     top: 0;
     z-index: 1;
     border-bottom: 2px solid #dee2e6;
+}
+
+/* Card styling */
+.card {
+    border: none;
+    border-radius: 8px;
+}
+
+.card-header {
+    border-bottom: 1px solid #dee2e6;
+}
+
+/* Small text styling */
+.text-muted {
+    font-size: 0.85rem;
+}
+
+/* Hover effect on rows */
+.table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+    transition: background-color 0.2s ease;
+}
+
+/* Search input styling */
+.input-group {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.input-group-text {
+    border-right: none;
+}
+
+.form-control {
+    border-left: none;
+}
+
+.form-control:focus {
+    border-color: #ced4da;
+    box-shadow: none;
+}
+
+.form-control:focus + .input-group-text {
+    border-color: #ced4da;
+}
+
+/* Style for search icon */
+.input-group-text .text-muted {
+    opacity: 0.6;
 } 
