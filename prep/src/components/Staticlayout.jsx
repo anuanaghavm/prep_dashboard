@@ -1,23 +1,20 @@
-import React, { Children } from 'react'
-import Sidebar from './Sidebar'
-import { Col, Row } from 'react-bootstrap'
+import React from "react";
+import Sidebar from "./Sidebar";
+import Header from "./Header";
+import "../style/Header.css";
 
-function Staticlayout({children}) {
+const Staticlayout = ({ children }) => {
   return (
-    <div >
-        <Row >
-            <Col md={2}>
-                <Sidebar/>
-            </Col>
-            
-            <Col md={10} >
-                {children}
-            </Col>
-        </Row>
-      {/* <Sidebar/>
-      <div className="">{children}</div> */}
+    <div className="d-flex">
+      <Sidebar />
+      <div className="flex-grow-1" style={{ marginLeft: "250px" }}>
+        <Header />
+        <div className="p-4">
+          {children}
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Staticlayout
+export default Staticlayout;

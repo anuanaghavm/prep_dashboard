@@ -31,6 +31,10 @@ const routes = [
     element: <Login />,
   },
   {
+    path: "/login",
+    element: <Login />,
+  },
+  {
     path: "/dashboard",
     element: (
       <Staticlayout>
