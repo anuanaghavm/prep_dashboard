@@ -15,7 +15,8 @@ import {
   MdList,
   MdBookmark,
   MdPerson,
-  MdSettings
+  MdSettings,
+  MdSearch
 } from "react-icons/md";
 
 const Sidebar = () => {
@@ -96,6 +97,18 @@ const Sidebar = () => {
         { title: "Payment List", icon: <MdList />, path: "/payments" },
         { title: "Remove Course Payment", icon: <MdPayments />, path: "/remove-course-payment" },
         { title: "Payment Settings", icon: <MdSettings />, path: "/payment-settings" }
+      ]
+    },
+    {
+      title: "SEO",
+      icon: <MdSearch className="fs-4" />,
+      key: "seo",
+      subItems: [
+        { title: "Home SEO", icon: <MdSearch />, path: "/homeseo" },
+        { title: "Blog SEO", icon: <MdSearch />, path: "/MetaTagsBlogForm" },
+        { title: "Courses SEO", icon: <MdSearch />, path: "/CoursesTagSeo" },
+        { title: "About Us SEO", icon: <MdSearch />, path: "/aboutusseo" },
+        { title: "Contact Us SEO", icon: <MdSearch />, path: "/contactusseo" }
       ]
     }
   ];
