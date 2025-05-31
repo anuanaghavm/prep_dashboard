@@ -59,7 +59,7 @@ const Header = () => {
                 style={{ 
                   width: '35px', 
                   height: '35px', 
-                  backgroundColor: '#FF6B45',
+                  backgroundColor: '#adb5bd',
                   color: 'white',
                   fontSize: '0.9rem',
                   fontWeight: '500'
@@ -113,18 +113,18 @@ const Header = () => {
             fontSize: '0.9rem',
             padding: '0.375rem 1rem',
             borderRadius: '4px',
-            backgroundColor: '#FFF1ED',
-            color: '#FF6B45',
-            border: '1px solid #FF6B45',
+            backgroundColor: '#f8f9fa',
+            color: '#495057',
+            border: '1px solid #adb5bd',
             transition: 'all 0.2s ease'
           }}
           onMouseOver={(e) => {
-            e.currentTarget.style.backgroundColor = '#FF6B45';
+            e.currentTarget.style.backgroundColor = '#adb5bd';
             e.currentTarget.style.color = 'white';
           }}
           onMouseOut={(e) => {
-            e.currentTarget.style.backgroundColor = '#FFF1ED';
-            e.currentTarget.style.color = '#FF6B45';
+            e.currentTarget.style.backgroundColor = '#f8f9fa';
+            e.currentTarget.style.color = '#495057';
           }}
         >
           Logout

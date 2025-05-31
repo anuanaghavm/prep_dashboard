@@ -118,7 +118,7 @@ const Sidebar = () => {
       className="d-flex flex-column shadow-sm"
       style={{
         width: "250px",
-        backgroundColor: "#FF6B45",
+        backgroundColor: "white",
         height: "100vh",
         position: "fixed",
         top: 0,
@@ -150,8 +150,8 @@ const Sidebar = () => {
           <li key={index} className="nav-item mb-2">
             {item.single ? (
               <a
-                className={`nav-link text-white d-flex align-items-center gap-3 rounded ${
-                  location.pathname === item.path ? "bg-white bg-opacity-10" : ""
+                className={`nav-link text-dark d-flex align-items-center gap-3 rounded ${
+                  location.pathname === item.path ? "bg-light bg-opacity-10" : ""
                 }`}
                 style={{ 
                   fontSize: "15px", 
@@ -167,8 +167,8 @@ const Sidebar = () => {
             ) : (
               <>
                 <div
-                  className={`d-flex align-items-center justify-content-between text-white rounded ${
-                    openMenus[item.key] ? "bg-white bg-opacity-10" : ""
+                  className={`d-flex align-items-center justify-content-between text-dark rounded ${
+                    openMenus[item.key] ? "bg-light bg-opacity-10" : ""
                   }`}
                   style={{ 
                     cursor: "pointer", 
@@ -193,8 +193,8 @@ const Sidebar = () => {
                     {item.subItems.map((subItem, subIndex) => (
                       <li key={subIndex}>
                         <a
-                          className={`text-white d-flex align-items-center gap-3 rounded ${
-                            location.pathname === subItem.path ? "bg-white bg-opacity-10" : ""
+                          className={`text-dark d-flex align-items-center gap-3 rounded ${
+                            location.pathname === subItem.path ? "bg-light bg-opacity-10" : ""
                           }`}
                           style={{ 
                             cursor: "pointer", 
